@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "96PcHe6JihIK+X9euaaN2WpPdxXtUNMlMnse4OUGckYywSqMZPQ3vbirkGqhAamkSPwlKSjbH6H7poY21+KSUA==",
+  "dgSpecHash": "uJVBmAsREK0Fuyzf1qFwGk7U5eGpJG5oyqwOUZioJPdq6qs2REhl3dAQcP+DBj/Rga7+WsbDGdt+iwkyHSaN2A==",
   "success": true,
-  "projectFilePath": "C:\\Users\\rocio\\Desktop\\backendDesarrollo\\Sistema de registro y validacion de personas\\Sistema de registro y validacion de personas.csproj",
+  "projectFilePath": "C:\\Users\\rocio\\Desktop\\backendDesarrollo\\Sistema de registro y validacion de personas\\SRVP.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\rocio\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\rocio\\.nuget\\packages\\microsoft.aspnetcore.openapi\\7.0.10\\microsoft.aspnetcore.openapi.7.0.10.nupkg.sha512",

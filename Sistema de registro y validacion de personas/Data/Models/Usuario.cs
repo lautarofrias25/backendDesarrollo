@@ -1,11 +1,16 @@
-﻿namespace Sistema_de_registro_y_validacion_de_personas.Data.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace SRVP.Data.DTOs
 {
     public class Usuario
     {
+        [Key, Required]
         public int Id { get; set; }
-        public string name { get; set; }
-        public string contraseña { get; set; }
-        public string rol { get ; set; }
-
+        [Required]
+        public string nombre { get; set; }
+        [Required]
+        public string clave { get; set; }
+        [Required]
+        public string rol { get; set; }
     }
 }

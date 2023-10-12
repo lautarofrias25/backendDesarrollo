@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Sistema_de_registro_y_validacion_de_personas.Data.Tables;
+using SRVP.Data.DTOs;
 
-namespace Sistema_de_registro_y_validacion_de_personas.Data
+namespace SRVP.Data
 {
     public class SRVPContext : DbContext
     {
@@ -10,9 +10,9 @@ namespace Sistema_de_registro_y_validacion_de_personas.Data
         {
             modelBuilder.UseIdentityAlwaysColumns();
         }
-        public DbSet<PersonaTable> Personas { get ; set; }
-        public DbSet<SistemaExternoTable> SistemasExternos { get; set; }
-        public DbSet<UsuarioTable> Usuarios { get; set; }
+        public DbSet<Persona> Personas { get ; set; }
+        public DbSet<SistemaExterno> SistemasExternos { get; set; }
+        public DbSet<Usuario> Usuarios { get; set; }
         
     }
 }

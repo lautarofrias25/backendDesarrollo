@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using Sistema_de_registro_y_validacion_de_personas.Data;
+using SRVP.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 

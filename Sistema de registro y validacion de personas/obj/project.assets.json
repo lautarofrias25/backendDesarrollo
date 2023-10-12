@@ -1489,9 +1489,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\rocio\\Desktop\\backendDesarrollo\\Sistema de registro y validacion de personas\\Sistema de registro y validacion de personas.csproj",
-      "projectName": "Sistema de registro y validacion de personas",
-      "projectPath": "C:\\Users\\rocio\\Desktop\\backendDesarrollo\\Sistema de registro y validacion de personas\\Sistema de registro y validacion de personas.csproj",
+      "projectUniqueName": "C:\\Users\\rocio\\Desktop\\backendDesarrollo\\Sistema de registro y validacion de personas\\SRVP.csproj",
+      "projectName": "SRVP",
+      "projectPath": "C:\\Users\\rocio\\Desktop\\backendDesarrollo\\Sistema de registro y validacion de personas\\SRVP.csproj",
       "packagesPath": "C:\\Users\\rocio\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\rocio\\Desktop\\backendDesarrollo\\Sistema de registro y validacion de personas\\obj\\",
       "projectStyle": "PackageReference",
