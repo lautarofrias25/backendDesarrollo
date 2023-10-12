@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\lauta\\Desktop\\BackendDesarrollo\\Sistema de registro y validacion de personas\\Sistema de registro y validacion de personas.csproj": {}
+    "C:\\Users\\rocio\\Desktop\\backendDesarrollo\\Sistema de registro y validacion de personas\\Sistema de registro y validacion de personas.csproj": {}
   },
   "projects": {
-    "C:\\Users\\lauta\\Desktop\\BackendDesarrollo\\Sistema de registro y validacion de personas\\Sistema de registro y validacion de personas.csproj": {
+    "C:\\Users\\rocio\\Desktop\\backendDesarrollo\\Sistema de registro y validacion de personas\\Sistema de registro y validacion de personas.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\lauta\\Desktop\\BackendDesarrollo\\Sistema de registro y validacion de personas\\Sistema de registro y validacion de personas.csproj",
+        "projectUniqueName": "C:\\Users\\rocio\\Desktop\\backendDesarrollo\\Sistema de registro y validacion de personas\\Sistema de registro y validacion de personas.csproj",
         "projectName": "Sistema de registro y validacion de personas",
-        "projectPath": "C:\\Users\\lauta\\Desktop\\BackendDesarrollo\\Sistema de registro y validacion de personas\\Sistema de registro y validacion de personas.csproj",
-        "packagesPath": "C:\\Users\\lauta\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\lauta\\Desktop\\BackendDesarrollo\\Sistema de registro y validacion de personas\\obj\\",
+        "projectPath": "C:\\Users\\rocio\\Desktop\\backendDesarrollo\\Sistema de registro y validacion de personas\\Sistema de registro y validacion de personas.csproj",
+        "packagesPath": "C:\\Users\\rocio\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\rocio\\Desktop\\backendDesarrollo\\Sistema de registro y validacion de personas\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\lauta\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\rocio\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

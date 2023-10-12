@@ -9,6 +9,7 @@
         public int dni { get; set; }
         public string genero { get; set; }
         public int telefono { get; set; }
+        public Boolean habilitado { get; set; } = false;
         public Boolean estado { get; set; }
         public Boolean estadoCrediticio { get; set; }
     }
