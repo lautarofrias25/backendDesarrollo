@@ -1484,19 +1484,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\rocio\\.nuget\\packages\\": {}
+    "C:\\Users\\Makowiecki\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\rocio\\Desktop\\backendDesarrollo\\Sistema de registro y validacion de personas\\SRVP.csproj",
+      "projectUniqueName": "C:\\Users\\Makowiecki\\Desktop\\backendDesarrollo\\Sistema de registro y validacion de personas\\SRVP.csproj",
       "projectName": "SRVP",
-      "projectPath": "C:\\Users\\rocio\\Desktop\\backendDesarrollo\\Sistema de registro y validacion de personas\\SRVP.csproj",
-      "packagesPath": "C:\\Users\\rocio\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\rocio\\Desktop\\backendDesarrollo\\Sistema de registro y validacion de personas\\obj\\",
+      "projectPath": "C:\\Users\\Makowiecki\\Desktop\\backendDesarrollo\\Sistema de registro y validacion de personas\\SRVP.csproj",
+      "packagesPath": "C:\\Users\\Makowiecki\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Makowiecki\\Desktop\\backendDesarrollo\\Sistema de registro y validacion de personas\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\rocio\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Makowiecki\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
