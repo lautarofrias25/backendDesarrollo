@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace SRVP.Data.DTOs
+namespace SRVP.Data.Models
 {
     public class Usuario
     {
@@ -9,7 +9,7 @@ namespace SRVP.Data.DTOs
         [Required]
         public string nombre { get; set; }
         [Required]
-        public string clave { get; set; }
+        public byte[] clave { get; set; }
         [Required]
         public string rol { get; set; }
     }

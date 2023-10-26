@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SRVP.Data.DTOs;
+using SRVP.Data.Models;
 
 namespace SRVP.Data
 {

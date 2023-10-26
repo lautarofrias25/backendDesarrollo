@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace SRVP.Data.DTOs
+namespace SRVP.Data.Models
 {
     public class SistemaExterno
     {
