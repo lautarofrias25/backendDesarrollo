@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.VisualBasic;
+using System.ComponentModel.DataAnnotations;
 
 namespace SRVP.Data.DTOs
 {
@@ -14,6 +15,8 @@ namespace SRVP.Data.DTOs
         public int cuil { get; set; }
         [Required]
         public int dni { get; set; }
+        [Required]
+        public DateOnly fechaNacimiento { get; set; } //VER
         [Required]
         public string genero { get; set; }
         [Required]
