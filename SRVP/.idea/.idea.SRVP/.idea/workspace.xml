@@ -10,98 +10,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="15dfd42b-9dd6-4ae3-bc8d-dc7e34201b80" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../Sistema de registro y validacion de personas/.vs/ProjectEvaluation/sistema de registro y validacion de personas.metadata.v7.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Sistema de registro y validacion de personas/.vs/ProjectEvaluation/sistema de registro y validacion de personas.projects.v7.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Sistema de registro y validacion de personas/.vs/SRVP/v17/.suo" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Sistema de registro y validacion de personas/.vs/Sistema de registro y validacion de personas/FileContentIndex/35845f5f-54ec-473c-8537-1be8c195a6cb.vsidx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Sistema de registro y validacion de personas/.vs/Sistema de registro y validacion de personas/FileContentIndex/39fcfd33-d991-42a3-afef-92b65684c7d8.vsidx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Sistema de registro y validacion de personas/.vs/Sistema de registro y validacion de personas/FileContentIndex/5bc10040-a616-49a0-9460-f2b89f8400c8.vsidx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Sistema de registro y validacion de personas/.vs/Sistema de registro y validacion de personas/FileContentIndex/c1de9d39-de09-44d3-a890-d19fa2900bb7.vsidx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Sistema de registro y validacion de personas/.vs/Sistema de registro y validacion de personas/FileContentIndex/faaecc4e-0087-4b2a-bc9b-dc03f3af5b27.vsidx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Sistema de registro y validacion de personas/Controllers/PersonaController.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Sistema de registro y validacion de personas/Controllers/UsuarioController.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Sistema de registro y validacion de personas/Data/DTOs/PersonaDTO.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Sistema de registro y validacion de personas/Data/DTOs/SistemaExternoDTO.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Sistema de registro y validacion de personas/Data/DTOs/UsuarioDTO.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Sistema de registro y validacion de personas/Data/Models/Persona.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Sistema de registro y validacion de personas/Data/Models/SistemaExterno.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Sistema de registro y validacion de personas/Data/Models/Usuario.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Sistema de registro y validacion de personas/Data/SRVPContext.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Sistema de registro y validacion de personas/Migrations/20231012163841_InitialMigration.Designer.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Sistema de registro y validacion de personas/Migrations/20231012163841_InitialMigration.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Sistema de registro y validacion de personas/Migrations/SRVPContextModelSnapshot.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Sistema de registro y validacion de personas/Program.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Sistema de registro y validacion de personas/Properties/launchSettings.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Sistema de registro y validacion de personas/SRVP.csproj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Sistema de registro y validacion de personas/SRVP.csproj.user" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Sistema de registro y validacion de personas/SRVP.sln" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Sistema de registro y validacion de personas/appsettings.Development.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Sistema de registro y validacion de personas/appsettings.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Sistema de registro y validacion de personas/bin/Debug/net7.0/Humanizer.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Sistema de registro y validacion de personas/bin/Debug/net7.0/Microsoft.AspNetCore.OpenApi.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Sistema de registro y validacion de personas/bin/Debug/net7.0/Microsoft.EntityFrameworkCore.Abstractions.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Sistema de registro y validacion de personas/bin/Debug/net7.0/Microsoft.EntityFrameworkCore.Design.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Sistema de registro y validacion de personas/bin/Debug/net7.0/Microsoft.EntityFrameworkCore.Relational.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Sistema de registro y validacion de personas/bin/Debug/net7.0/Microsoft.EntityFrameworkCore.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Sistema de registro y validacion de personas/bin/Debug/net7.0/Microsoft.Extensions.DependencyModel.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Sistema de registro y validacion de personas/bin/Debug/net7.0/Microsoft.OpenApi.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Sistema de registro y validacion de personas/bin/Debug/net7.0/Mono.TextTemplating.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Sistema de registro y validacion de personas/bin/Debug/net7.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Sistema de registro y validacion de personas/bin/Debug/net7.0/Npgsql.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Sistema de registro y validacion de personas/bin/Debug/net7.0/SRVP.deps.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Sistema de registro y validacion de personas/bin/Debug/net7.0/SRVP.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Sistema de registro y validacion de personas/bin/Debug/net7.0/SRVP.exe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Sistema de registro y validacion de personas/bin/Debug/net7.0/SRVP.pdb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Sistema de registro y validacion de personas/bin/Debug/net7.0/SRVP.runtimeconfig.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Sistema de registro y validacion de personas/bin/Debug/net7.0/Swashbuckle.AspNetCore.Swagger.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Sistema de registro y validacion de personas/bin/Debug/net7.0/Swashbuckle.AspNetCore.SwaggerGen.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Sistema de registro y validacion de personas/bin/Debug/net7.0/Swashbuckle.AspNetCore.SwaggerUI.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Sistema de registro y validacion de personas/bin/Debug/net7.0/System.CodeDom.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Sistema de registro y validacion de personas/bin/Debug/net7.0/appsettings.Development.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Sistema de registro y validacion de personas/bin/Debug/net7.0/appsettings.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Sistema de registro y validacion de personas/obj/Debug/net7.0/.NETCoreApp,Version=v7.0.AssemblyAttributes.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Sistema de registro y validacion de personas/obj/Debug/net7.0/SRVP.AssemblyInfo.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Sistema de registro y validacion de personas/obj/Debug/net7.0/SRVP.AssemblyInfoInputs.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Sistema de registro y validacion de personas/obj/Debug/net7.0/SRVP.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Sistema de registro y validacion de personas/obj/Debug/net7.0/SRVP.GlobalUsings.g.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Sistema de registro y validacion de personas/obj/Debug/net7.0/SRVP.MvcApplicationPartsAssemblyInfo.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Sistema de registro y validacion de personas/obj/Debug/net7.0/SRVP.MvcApplicationPartsAssemblyInfo.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Sistema de registro y validacion de personas/obj/Debug/net7.0/SRVP.assets.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Sistema de registro y validacion de personas/obj/Debug/net7.0/SRVP.csproj.AssemblyReference.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Sistema de registro y validacion de personas/obj/Debug/net7.0/SRVP.csproj.CopyComplete" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Sistema de registro y validacion de personas/obj/Debug/net7.0/SRVP.csproj.CoreCompileInputs.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Sistema de registro y validacion de personas/obj/Debug/net7.0/SRVP.csproj.FileListAbsolute.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Sistema de registro y validacion de personas/obj/Debug/net7.0/SRVP.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Sistema de registro y validacion de personas/obj/Debug/net7.0/SRVP.genruntimeconfig.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Sistema de registro y validacion de personas/obj/Debug/net7.0/SRVP.pdb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Sistema de registro y validacion de personas/obj/Debug/net7.0/Sistema de registro y validacion de personas.AssemblyInfo.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Sistema de registro y validacion de personas/obj/Debug/net7.0/Sistema de registro y validacion de personas.AssemblyInfoInputs.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Sistema de registro y validacion de personas/obj/Debug/net7.0/Sistema de registro y validacion de personas.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Sistema de registro y validacion de personas/obj/Debug/net7.0/Sistema de registro y validacion de personas.GlobalUsings.g.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Sistema de registro y validacion de personas/obj/Debug/net7.0/Sistema de registro y validacion de personas.assets.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Sistema de registro y validacion de personas/obj/Debug/net7.0/Sistema de registro y validacion de personas.csproj.AssemblyReference.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Sistema de registro y validacion de personas/obj/Debug/net7.0/apphost.exe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Sistema de registro y validacion de personas/obj/Debug/net7.0/ref/SRVP.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Sistema de registro y validacion de personas/obj/Debug/net7.0/refint/SRVP.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Sistema de registro y validacion de personas/obj/Debug/net7.0/staticwebassets.build.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Sistema de registro y validacion de personas/obj/Debug/net7.0/staticwebassets/msbuild.build.SRVP.props" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Sistema de registro y validacion de personas/obj/Debug/net7.0/staticwebassets/msbuild.buildMultiTargeting.SRVP.props" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Sistema de registro y validacion de personas/obj/Debug/net7.0/staticwebassets/msbuild.buildTransitive.SRVP.props" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Sistema de registro y validacion de personas/obj/Release/net7.0/.NETCoreApp,Version=v7.0.AssemblyAttributes.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Sistema de registro y validacion de personas/obj/Release/net7.0/Sistema de registro y validacion de personas.AssemblyInfo.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Sistema de registro y validacion de personas/obj/Release/net7.0/Sistema de registro y validacion de personas.AssemblyInfoInputs.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Sistema de registro y validacion de personas/obj/Release/net7.0/Sistema de registro y validacion de personas.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Sistema de registro y validacion de personas/obj/Release/net7.0/Sistema de registro y validacion de personas.GlobalUsings.g.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Sistema de registro y validacion de personas/obj/Release/net7.0/Sistema de registro y validacion de personas.assets.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Sistema de registro y validacion de personas/obj/Release/net7.0/Sistema de registro y validacion de personas.csproj.AssemblyReference.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Sistema de registro y validacion de personas/obj/SRVP.csproj.nuget.dgspec.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Sistema de registro y validacion de personas/obj/SRVP.csproj.nuget.g.props" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Sistema de registro y validacion de personas/obj/SRVP.csproj.nuget.g.targets" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Sistema de registro y validacion de personas/obj/Sistema de registro y validacion de personas.csproj.nuget.dgspec.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Sistema de registro y validacion de personas/obj/Sistema de registro y validacion de personas.csproj.nuget.g.props" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Sistema de registro y validacion de personas/obj/Sistema de registro y validacion de personas.csproj.nuget.g.targets" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Sistema de registro y validacion de personas/obj/project.assets.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Sistema de registro y validacion de personas/obj/project.nuget.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/PersonaController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/PersonaController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/DTOs/UsuarioLoginDto.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/DTOs/UsuarioRegisterDTO.cs" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -127,7 +39,8 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "Gero",
+    "git-widget-placeholder": "Lau",
+    "last_opened_file_path": "C:/Users/lauta/Desktop/BackendDesarrollo/SRVP",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -201,6 +114,7 @@
       <workItem from="1698341896299" duration="104000" />
       <workItem from="1698342068852" duration="224000" />
       <workItem from="1698342376784" duration="3746000" />
+      <workItem from="1698477504113" duration="644000" />
     </task>
     <servers />
   </component>

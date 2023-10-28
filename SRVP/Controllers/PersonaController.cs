@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Sistema_de_registro_y_validacion_de_personas.Data.DTOs.Persona;
-using SRVP.Data;
 using SRVP.Data.DTOs;
+using SRVP.Data.DTOs.Persona;
+using SRVP.Data.Models;
 using SRVP.Servicios;
 
 namespace SRVP.Controllers
@@ -20,61 +20,63 @@ namespace SRVP.Controllers
 
         // GET: PersonaController
         [HttpGet]
-        public async Task<ActionResult<ICollection<PersonaDTO>>> GetPersonasAsync()
+        public async Task<ActionResult<Response<ICollection<PersonaDTO>>>> GetPersonasAsync()
         {
-            var personas = await _service.GetPersonas();
-            if (personas == null)
+            var response = await _service.GetPersonas();
+            if (response.Datos == null)
             {
                 return NoContent();
             }
-            return Ok(personas);
+            return Ok(response);
         }
 
         // GET: PersonaController/GetPersona/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<PersonaDTO>> GetPersona(int id)
+        public async Task<ActionResult<Response<PersonaDTO>>> GetPersona(int id)
         {
-            var persona = await _service.GetPersona(id);
-            if (persona == null)
+            var response = await _service.GetPersona(id);
+            if (response.Datos == null)
             {
                 return NotFound();
             }
-            return Ok(persona);
+            return Ok(response);
         }
 
         // POST: PersonaController/Create
         [HttpPost]
         //[ValidateAntiForgeryToken]
-        public async Task<ActionResult<Persona>> PostPersona([FromBody] CreatePersonaDTO personaDTO)
+        public async Task<ActionResult<Response<Persona>>> PostPersona([FromBody] CreatePersonaDTO personaDTO)
         {
-            var persona = await _service.PostPersona(personaDTO);
-            if (persona == null)
+            var response = await _service.PostPersona(personaDTO);
+            if (response.Datos == null)
             {
-                return NotFound(persona);
+                return BadRequest(response);
             }
-            else
-            {
-                return Ok(persona);
-            }            
+            return Ok(response);            
         }
 
         // PUT: PersonaController/PutPersona/5
-        public async Task<ActionResult<Persona>> PutPersona([FromBody] PersonaDTO personaDTO)
+        [HttpPut]
+        public async Task<ActionResult<Response<Persona>>> PutPersona([FromBody] PersonaDTO personaDTO)
         {
-            var personaMod = await _service.PutPersona(personaDTO);
-            return Ok();
+            var response = await _service.PutPersona(personaDTO);
+            if (response.Datos == null)
+            {
+                return BadRequest(response);
+            }
+            return Ok(response);
             //falta
         }
 
         // DELETE: PersonaController/DeletePersona/5
-        public async Task<ActionResult<Persona>> DeletePersona(int id)
+        public async Task<ActionResult<Response<Persona>>> DeletePersona(int id)
         {
-            var persona = await _service.DeletePersona(id);
-            if (persona == null)
+            var response = await _service.DeletePersona(id);
+            if (response.Datos == null)
             {
-                return NotFound(persona);
+                return NotFound(response);
             }
-            return Ok(persona);
+            return Ok(response);
         }
     }
 }

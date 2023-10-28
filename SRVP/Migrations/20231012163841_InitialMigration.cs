@@ -3,7 +3,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace Sistema_de_registro_y_validacion_de_personas.Migrations
+namespace SRVP.Migrations
 {
     /// <inheritdoc />
     public partial class InitialMigration : Migration

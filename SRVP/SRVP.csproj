@@ -4,7 +4,7 @@
     <TargetFramework>net7.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <RootNamespace>Sistema_de_registro_y_validacion_de_personas</RootNamespace>
+    <RootNamespace>SRVP</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

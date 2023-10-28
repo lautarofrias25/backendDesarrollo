@@ -8,7 +8,7 @@ using SRVP.Data;
 
 #nullable disable
 
-namespace Sistema_de_registro_y_validacion_de_personas.Migrations
+namespace SRVP.Migrations
 {
     [DbContext(typeof(SRVPContext))]
     [Migration("20231012163841_InitialMigration")]

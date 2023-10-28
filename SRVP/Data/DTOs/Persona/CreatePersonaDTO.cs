@@ -1,4 +1,4 @@
-﻿namespace Sistema_de_registro_y_validacion_de_personas.Data.DTOs.Persona
+﻿namespace SRVP.Data.DTOs.Persona
 {
     public class CreatePersonaDTO
     {
