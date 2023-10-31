@@ -5,10 +5,11 @@ using SRVP.Data;
 using System.Runtime.CompilerServices;
 using SRVP.Data.Models;
 using SRVP.Data.DTOs;
+using SRVP.Interfaces;
 
 namespace SRVP.Servicios
 {
-    public class PersonaService
+    public class PersonaService : IPersonaService
     {
         private readonly SRVPContext _context;
         //NO SE POR QUE ESTA ACA
