@@ -45,7 +45,7 @@ namespace SRVP.Controllers
         // POST: PersonaController/Create
         [HttpPost]
         //[ValidateAntiForgeryToken]
-        public async Task<ActionResult<Response<Persona>>> PostPersona([FromBody] CreatePersonaDTO personaDTO)
+        public async Task<ActionResult<Response<Persona>>> PostPersona([FromBody] RegisterPersonaDTO personaDTO)
         {
             var response = await _service.PostPersona(personaDTO);
             if (response.Datos == null)

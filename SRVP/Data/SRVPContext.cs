@@ -10,10 +10,15 @@ namespace SRVP.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.UseIdentityAlwaysColumns();
+            modelBuilder.Entity<CodigoAcceso>()
+           .Property(e => e.id)
+           .HasDefaultValueSql("gen_random_uuid()");
+            modelBuilder.Entity<SistemaExterno>()
+           .Property(e => e.id)
+           .HasDefaultValueSql("gen_random_uuid()");
         }
         public DbSet<Persona> Personas { get ; set; }
         public DbSet<SistemaExterno> SistemasExternos { get; set; }
-        public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<CodigoAcceso> CodigosAccesos { get; set; }
         
     }

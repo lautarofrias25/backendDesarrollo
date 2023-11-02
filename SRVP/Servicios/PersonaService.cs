@@ -114,7 +114,7 @@ namespace SRVP.Servicios
             }
         }
 
-        public async Task<Response<Persona>> PostPersona(CreatePersonaDTO personaDTO)
+        public async Task<Response<Persona>> PostPersona(RegisterPersonaDTO personaDTO)
         {
             var response = new Response<Persona>();
             try

@@ -22,6 +22,18 @@ namespace SRVP.Data.Models
         [Required]
         public int telefono { get; set; } //ver
         [Required]
+        public string usuario { get; set; }
+        [Required]
+        public string email { get; set; }
+        [Required]
+        public string clave { get; set; }
+        [Required]
+        public string sal { get; set; }
+        [Required]
+        public string rol { get; set; }
+        [Required]
+        public DateTime alta { get; set; }
+        [Required]
         public bool habilitado { get; set; } = false;
         [Required]
         public bool estado { get; set; } = true;
