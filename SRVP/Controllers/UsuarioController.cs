@@ -5,7 +5,7 @@ using SRVP.Data;
 using SRVP.Data.Models;
 using SRVP.Data.DTOs;
 using SRVP.Helpers;
-
+/*
 namespace SRVP.Controllers
 {
     [Route("Usuario")]

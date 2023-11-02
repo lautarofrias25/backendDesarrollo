@@ -16,11 +16,11 @@ namespace SRVP.Data.Models
         [Required]
         public int dni { get; set; }
         [Required]
-        public DateOnly fechaNacimiento { get; set; } //VER
+        public DateOnly fechaNacimiento { get; set; }
         [Required]
         public string genero { get; set; }
         [Required]
-        public int telefono { get; set; }
+        public int telefono { get; set; } //ver
         [Required]
         public bool habilitado { get; set; } = false;
         [Required]

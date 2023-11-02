@@ -5,12 +5,21 @@ namespace SRVP.Data.Models
     public class Usuario
     {
         [Key, Required]
-        public int Id { get; set; }
+        public int id { get; set; }
         [Required]
         public string nombre { get; set; }
         [Required]
-        public byte[] clave { get; set; }
+        public string apellido { get; set; }
+        [Required]
+        public string email { get; set; }
+        [Required]
+        public string clave { get; set; }
         [Required]
         public string rol { get; set; }
+        [Required]
+        public DateOnly alta { get; set; }
+        [Required]
+        public string sal { get; set; }
+
     }
 }
