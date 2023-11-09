@@ -12,17 +12,6 @@ namespace SRVP.Servicios
     public class PersonaService : IPersonaService
     {
         private readonly SRVPContext _context;
-        //NO SE POR QUE ESTA ACA
-        //private string nombre;
-        //private string apellido;
-        //private int cuil;
-        //private int dni;
-        //private string genero;
-        //private int telefono;
-        //private bool habilitado;
-        //private bool estado;
-        //private bool estadoCrediticio;
-        //private object personaDTO;
 
         public PersonaService(SRVPContext context)
         {
@@ -45,10 +34,8 @@ namespace SRVP.Servicios
                     personaDTO.cuil = persona.cuil;
                     personaDTO.dni = persona.dni;
                     personaDTO.fechaNacimiento = persona.fechaNacimiento; //VER
-                    personaDTO.genero = persona.genero;
-                    personaDTO.telefono = persona.telefono;
                     personaDTO.habilitado = persona.habilitado;
-                    personaDTO.estado = persona.estado;
+                    personaDTO.vivo = persona.vivo;
                     personaDTO.estadoCrediticio = persona.estadoCrediticio;
                 }
                 response.Datos = personasDTO;
@@ -89,10 +76,8 @@ namespace SRVP.Servicios
                         cuil = persona.cuil,
                         dni = persona.dni,
                         fechaNacimiento = persona.fechaNacimiento,
-                        genero = persona.genero,
-                        telefono = persona.telefono,
                         habilitado = persona.habilitado,
-                        estado = persona.estado,
+                        vivo = persona.vivo,
                         estadoCrediticio = persona.estadoCrediticio
                     };
                     response.Datos = personaDTO;
@@ -128,10 +113,8 @@ namespace SRVP.Servicios
                     persona.cuil = personaDTO.cuil;
                     persona.dni = personaDTO.dni;
                     persona.fechaNacimiento = personaDTO.fechaNacimiento; //VER
-                    persona.genero = personaDTO.genero;
-                    persona.telefono = personaDTO.telefono;
                     persona.habilitado = personaDTO.habilitado;
-                    persona.estado = personaDTO.estado;
+                    persona.vivo = personaDTO.vivo;
                     persona.estadoCrediticio = personaDTO.estadoCrediticio;
                     _context.Personas.Add(persona);
                     _context.SaveChanges();
@@ -167,10 +150,8 @@ namespace SRVP.Servicios
                     personaBD.cuil = personaDTO.cuil;
                     personaBD.dni = personaDTO.dni;
                     personaBD.fechaNacimiento = personaDTO.fechaNacimiento; //VER
-                    personaBD.genero = personaDTO.genero;
-                    personaBD.telefono = personaDTO.telefono;
                     personaBD.habilitado = personaDTO.habilitado;
-                    personaBD.estado = personaDTO.estado;
+                    personaBD.vivo = personaDTO.vivo;
                     personaBD.estadoCrediticio = personaDTO.estadoCrediticio;
                     await _context.SaveChangesAsync();
                     response.Datos = personaBD;

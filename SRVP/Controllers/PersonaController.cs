@@ -7,7 +7,7 @@ using SRVP.Servicios;
 
 namespace SRVP.Controllers
 {
-    [Route("api/[controller")]
+    [Route("api/[controller]")]
     [ApiController]
     public class PersonaController : ControllerBase
     {

@@ -11,7 +11,7 @@
         public string genero { get; set; }
         public int telefono { get; set; }
         public bool habilitado { get; set; } = false;
-        public bool estado { get; set; }
+        public bool vivo { get; set; }
         public bool estadoCrediticio { get; set; }
     }
 }

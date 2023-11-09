@@ -46,10 +46,10 @@ namespace SRVP.Controllers
                                                                                 //arrancando desde el inicio y le especifico la longitud
                     Array.Copy(saltBytes, 0, combinedBytes, passwBytes.Length, saltBytes.Length);
                     //este copia los elementos de saltBytes arrancando desde el indice 0 de saltBytes, en combinedBytes a partir del indice
-                    //que lo determino por passwBytes.Length y le especifico la longitudo de lo que voy a copiar con saltBytes.Length
+                    //que lo determino por passwBytes.Length y le especifico la longitud de lo que voy a copiar con saltBytes.Length
                     // asi me quedan concatenados los Bytes de passw y la salt
                     
-                                                                                 //llamo al helper que hashe los bytes de combinedBytes
+                                                                                 //llamo al helper que hashee los bytes de combinedBytes
                     string compHashString = _hasher.generateHash(combinedBytes); // los convierta a base64
                     if (userBD.clave == compHashString) //comparo con el string hasheado que tengo en la base de datos
                     {

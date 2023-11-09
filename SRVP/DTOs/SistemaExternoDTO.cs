@@ -1,9 +1,11 @@
 ﻿namespace SRVP.Data.DTOs
 {
-    /*public class SistemaExternoDTO
-    {
-        public int id { get; set; }                     TO DO
+    public class SistemaExternoDTO
+    {                    
         public string nombre { get; set; }
-        public string token { get; set; }
-    }*/
+        public string cuit { get; set; }
+        public string secreto { get; set; }
+
+        //necesitamos que ingrese la pagina de retorno en el POST?
+    }
 }
