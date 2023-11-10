@@ -25,7 +25,11 @@ namespace SRVP.Controllers
             var response = await _service.GetPersonas();
             if (response.Datos == null)
             {
-                return NoContent();
+                if (response.Mensaje.StartsWith("Error interno"))
+                {
+                    return StatusCode(StatusCodes.Status500InternalServerError, response);
+                }
+                return BadRequest(response);
             }
             return Ok(response);
         }
@@ -37,7 +41,11 @@ namespace SRVP.Controllers
             var response = await _service.GetPersona(id);
             if (response.Datos == null)
             {
-                return NotFound();
+                if (response.Mensaje.StartsWith("Error interno"))
+                {
+                    return StatusCode(StatusCodes.Status500InternalServerError, response);
+                }
+                return NotFound(response);
             }
             return Ok(response);
         }
@@ -50,9 +58,13 @@ namespace SRVP.Controllers
             var response = await _service.PostPersona(personaDTO);
             if (response.Datos == null)
             {
+                if (response.Mensaje.StartsWith("Error interno"))                               //Redundante, la persona se crea cuando se 
+                {                                                                               //crea cuando se registra
+                    return StatusCode(StatusCodes.Status500InternalServerError, response);
+                }
                 return BadRequest(response);
             }
-            return Ok(response);            
+            return StatusCode(StatusCodes.Status201Created, response);            
         }
 
         // PUT: PersonaController/PutPersona/5
@@ -62,6 +74,10 @@ namespace SRVP.Controllers
             var response = await _service.PutPersona(personaDTO);
             if (response.Datos == null)
             {
+                if (response.Mensaje.StartsWith("Error interno"))
+                {
+                    return StatusCode(StatusCodes.Status500InternalServerError, response);
+                }
                 return BadRequest(response);
             }
             return Ok(response);
@@ -69,14 +85,21 @@ namespace SRVP.Controllers
         }
 
         // DELETE: PersonaController/DeletePersona/5
+        [HttpDelete]
         public async Task<ActionResult<Response<Persona>>> DeletePersona(int id)
         {
             var response = await _service.DeletePersona(id);
             if (response.Datos == null)
             {
+                if (response.Mensaje.StartsWith("Error interno"))
+                {
+                    return StatusCode(StatusCodes.Status500InternalServerError, response);
+                }
                 return NotFound(response);
             }
             return Ok(response);
         }
+        // Falta un get que devuelva el estado crediticio de un usuario
+        // un put que cambie todos los estados crediticios
     }
 }

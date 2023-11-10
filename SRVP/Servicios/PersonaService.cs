@@ -6,6 +6,7 @@ using System.Runtime.CompilerServices;
 using SRVP.Data.Models;
 using SRVP.Data.DTOs;
 using SRVP.Interfaces;
+using Mapster;
 
 namespace SRVP.Servicios
 {
@@ -21,41 +22,39 @@ namespace SRVP.Servicios
         public async Task<Response<ICollection<PersonaDTO>>> GetPersonas()
         {
             var response = new Response<ICollection<PersonaDTO>>();
+            response.Exito = false;
+            response.Datos = null;
             try
             { 
                 var personas = await _context.Personas.ToListAsync();
-                var personasDTO = new List<PersonaDTO>();
-                foreach (var persona in personas)
+                if (personas != null)
                 {
-                    var personaDTO = new PersonaDTO();
-                    personaDTO.id = persona.id;
-                    personaDTO.nombre = persona.nombre;
-                    personaDTO.apellido = persona.apellido;
-                    personaDTO.cuil = persona.cuil;
-                    personaDTO.dni = persona.dni;
-                    personaDTO.fechaNacimiento = persona.fechaNacimiento; //VER
-                    personaDTO.habilitado = persona.habilitado;
-                    personaDTO.vivo = persona.vivo;
-                    personaDTO.estadoCrediticio = persona.estadoCrediticio;
-                }
-                response.Datos = personasDTO;
-                if (personasDTO == null)
-                {
-                    response.Exito = false;
-                    response.Mensaje = "No se hallaron personas";
-                }
-                else
-                {
+                    var personasDTO = new List<PersonaDTO>();
+                    foreach (var persona in personas)
+                    {
+                        var personaDTO = persona.Adapt<PersonaDTO>();
+                        /*personaDTO.id = persona.id;
+                        personaDTO.nombre = persona.nombre;
+                        personaDTO.apellido = persona.apellido;
+                        personaDTO.cuil = persona.cuil;
+                        personaDTO.dni = persona.dni;
+                        personaDTO.fechaNacimiento = persona.fechaNacimiento; //VER
+                        personaDTO.habilitado = persona.habilitado;
+                        personaDTO.vivo = persona.vivo;
+                        personaDTO.estadoCrediticio = persona.estadoCrediticio;*/
+                        personasDTO.Add(personaDTO);
+                    }
+                    response.Datos = personasDTO;
                     response.Exito = true;
-                    response.Mensaje = "Se recuperaron correctamente todas las personas";
+                    response.Mensaje = "Se recuperaron correctamente todas las personas"
                 }
+               
+                response.Mensaje = "No se hallaron personas";
                 return (response);
             }
             catch (Exception ex)
             {
-                response.Datos = null;
-                response.Exito = false;
-                response.Mensaje = "No se pudieron recuperar las personas : " + ex.Message;
+                response.Mensaje = "Error interno : " + ex.Message;
                 return (response);
             }
         }
@@ -63,12 +62,15 @@ namespace SRVP.Servicios
         public async Task<Response<PersonaDTO>> GetPersona(int id)
         {
             var response = new Response<PersonaDTO>();
+            response.Datos = null;
+            response.Exito = false;
             try
             {
                 var persona = await _context.Personas.FirstOrDefaultAsync(x => x.id == id);
                 if (persona != null)
                 {
-                    var personaDTO = new PersonaDTO
+                    var personaDTO = persona.Adapt<PersonaDTO>();
+                    /*
                     {
                         id = persona.id,
                         nombre = persona.nombre,
@@ -80,21 +82,18 @@ namespace SRVP.Servicios
                         vivo = persona.vivo,
                         estadoCrediticio = persona.estadoCrediticio
                     };
+                    */
                     response.Datos = personaDTO;
                     response.Exito = true;
                     response.Mensaje = "Se recupero correctamente la persona";
                     return (response);
                 };
-                response.Exito = false;
                 response.Mensaje = "No se hallo la persona";
-                response.Datos = null;
                 return (response);
             }
             catch (Exception ex)
             {
-                response.Datos = null;
-                response.Exito = false;
-                response.Mensaje = "No se pudo recuperar la persona : " + ex.Message;
+                response.Mensaje = "Error interno : " + ex.Message;
                 return (response);
             }
         }
@@ -102,12 +101,15 @@ namespace SRVP.Servicios
         public async Task<Response<Persona>> PostPersona(RegisterPersonaDTO personaDTO)
         {
             var response = new Response<Persona>();
+            response.Datos = null;
+            response.Exito = false;
             try
             {
                 var personaDB = await _context.Personas.FirstOrDefaultAsync(x => x.cuil == personaDTO.cuil);
                 if (personaDB == null)
                 {
-                    var persona = new Persona();
+                    var persona = personaDTO.Adapt<Persona>();
+                    /*
                     persona.nombre = personaDTO.nombre;
                     persona.apellido = personaDTO.apellido;
                     persona.cuil = personaDTO.cuil;
@@ -116,23 +118,20 @@ namespace SRVP.Servicios
                     persona.habilitado = personaDTO.habilitado;
                     persona.vivo = personaDTO.vivo;
                     persona.estadoCrediticio = personaDTO.estadoCrediticio;
-                    _context.Personas.Add(persona);
-                    _context.SaveChanges();
+                    */
+                    var personaBD = await _context.Personas.AddAsync(persona);
+                    await _context.SaveChangesAsync();
                     response.Exito = true;
                     response.Mensaje = "La persona se ha creado correctamente";
-                    response.Datos = persona;
+                    response.Datos = personaBD.Entity;
                     return (response);
                 }
-                response.Datos = personaDB;
-                response.Exito = false;
                 response.Mensaje = "La persona que intenta crear ya existe";
                 return (response);
             }
             catch (Exception ex)
             {
-                response.Datos = null;
-                response.Exito = false;
-                response.Mensaje = "No se pudo crear la persona : " + ex.Message;
+                response.Mensaje = "Error interno : " + ex.Message;
                 return (response);
             }
         }
@@ -140,35 +139,34 @@ namespace SRVP.Servicios
         public async Task<Response<Persona>> PutPersona(PersonaDTO personaDTO)
         {
             var response = new Response<Persona>();
+            response.Datos = null;
+            response.Exito = false;
             try
             {
                 var personaBD = await _context.Personas.FindAsync(personaDTO.id);
                 if (personaBD != null)
                 {
-                    personaBD.nombre = personaDTO.nombre;
+                    personaBD = personaDTO.Adapt(personaBD); //no se si funciona hay que probar
+                    /*personaBD.nombre = personaDTO.nombre;
                     personaBD.apellido = personaDTO.apellido;
                     personaBD.cuil = personaDTO.cuil;
                     personaBD.dni = personaDTO.dni;
                     personaBD.fechaNacimiento = personaDTO.fechaNacimiento; //VER
                     personaBD.habilitado = personaDTO.habilitado;
                     personaBD.vivo = personaDTO.vivo;
-                    personaBD.estadoCrediticio = personaDTO.estadoCrediticio;
+                    personaBD.estadoCrediticio = personaDTO.estadoCrediticio;*/
                     await _context.SaveChangesAsync();
                     response.Datos = personaBD;
                     response.Exito = true;
                     response.Mensaje = "La persona se ha modificado correctamente";
                     return response;
-                }
-                response.Datos = null;
-                response.Exito = false;
+                }               
                 response.Mensaje = "La persona a modificar no fue hallada";
                 return (response);
             }
             catch (Exception ex)
             {
-                response.Datos = null;
-                response.Exito = false;
-                response.Mensaje = "No se pudo modificar la persona : " + ex.Message;
+                response.Mensaje = "Error interno : " + ex.Message;
                 return response;
             }
         }
@@ -176,6 +174,8 @@ namespace SRVP.Servicios
         public async Task<Response<Persona>> DeletePersona(int id)
         {
             var response = new Response<Persona>();
+            response.Datos = null;
+            response.Exito = false;
             try
             {
                 var personaBD = await _context.Personas.FindAsync(id);
@@ -188,16 +188,12 @@ namespace SRVP.Servicios
                     response.Mensaje = "La persona se ha eliminado correctamente ";
                     return response;
                 }
-                response.Datos = null;
-                response.Exito = false;
                 response.Mensaje = "La persona a eliminar no fue hallada ";
                 return (response);
             }
             catch (Exception ex)
             {
-                response.Datos = null;
-                response.Exito = false;
-                response.Mensaje = "No se pudo eliminar la persona" + ex.Message;
+                response.Mensaje = "Error interno" + ex.Message;
                 return response;
             }
         }

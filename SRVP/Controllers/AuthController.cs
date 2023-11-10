@@ -9,6 +9,7 @@ using SRVP.DTOs;
 using SRVP.DTOs.Persona;
 using SRVP.Helpers;
 using SRVP.Models;
+using SRVP.Servicios;
 using System.Text;
 using System.Xml;
 
@@ -20,148 +21,72 @@ namespace SRVP.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
-        private readonly SRVPContext _context;
-        private readonly Hasher _hasher;
-        public AuthController (SRVPContext context, Hasher hasher)
+        private readonly AuthService _authService;
+        public AuthController (AuthService authService)
         {
-            _context = context;
-            _hasher = hasher;
+            _authService = authService;
         }
         // POST api/<AuthController>
         [HttpPost]
         public async Task<ActionResult<Response<string>>> loguearAccessCode([FromBody] PersonaLoginDto user)
         {
-            var response = new Response<string>();
-            try
+            var response = await _authService.loguearAccessCode(user);
+            if (response.Datos == null)
             {
-                response.Datos = null;
-                response.Exito = false;
-                string passw = user.clave;
-                var userBD = await _context.Personas.FirstOrDefaultAsync(x => x.nombre == user.nombre);
-                if (userBD != null)
+                if (response.Mensaje.StartsWith("Error interno"))
                 {
-                    byte[] saltBytes = Convert.FromBase64String(userBD.sal); //convierto de base64 a bytes
-                    byte[] passwBytes = Encoding.UTF8.GetBytes(passw); //obtengo los bytes de la clave que viene del front
-                    byte[] combinedBytes = new byte[passwBytes.Length + saltBytes.Length];
-                    Array.Copy(passwBytes, combinedBytes, passwBytes.Length);   //copia los elementos de passwBytes en combinedBytes
-                                                                                //arrancando desde el inicio y le especifico la longitud
-                    Array.Copy(saltBytes, 0, combinedBytes, passwBytes.Length, saltBytes.Length);
-                    //este copia los elementos de saltBytes arrancando desde el indice 0 de saltBytes, en combinedBytes a partir del indice
-                    //que lo determino por passwBytes.Length y le especifico la longitud de lo que voy a copiar con saltBytes.Length
-                    // asi me quedan concatenados los Bytes de passw y la salt
-                    
-                                                                                 //llamo al helper que hashee los bytes de combinedBytes
-                    string compHashString = _hasher.generateHash(combinedBytes); // los convierta a base64
-                    if (userBD.clave == compHashString) //comparo con el string hasheado que tengo en la base de datos
-                    {
-                        var sistemaExterno = await _context.SistemasExternos.FirstOrDefaultAsync(x => x.nombre == user.sistema);
-                        if (sistemaExterno != null)
-                        {
-                            var accessCode = new CodigoAcceso();
-                            accessCode.codigo = _hasher.generateAccessCode(); //llamo a la funcion del helper que me genera un accessCode
-                            accessCode.creacion = DateOnly.FromDateTime(DateTime.Now);
-                            accessCode.sistemaExternoId = sistemaExterno.id;
-                            accessCode.usuarioId = userBD.id;
-                            await _context.CodigosAccesos.AddAsync(accessCode);
-                            await _context.SaveChangesAsync();
-                            response.Datos = sistemaExterno.paginaRetorno + accessCode.codigo;
-                            response.Exito = true;
-                            response.Mensaje = "Credenciales correctas, codigo de acceso generado correctamente";
-                            return Ok(response);
-                        }
-                        response.Mensaje = "El sistema externo no esta registrado";
-                        return BadRequest(response);
-                    }
-                    response.Mensaje = "Las credenciales no son correctas";
-                    return BadRequest(response);
+                    return StatusCode(StatusCodes.Status500InternalServerError, response);
                 }
-                response.Mensaje = "El usuario no existe";
                 return BadRequest(response);
             }
-            catch(Exception ex)
-            {
-                response.Mensaje = "Error interno: " + ex.Message;
-                return StatusCode(StatusCodes.Status500InternalServerError, response);
-            }
+            return Ok(response);
         }
 
         // PUT api/<AuthController>/5
         [HttpPost]
         public async Task<ActionResult<Response<Persona>>> registrarPersona([FromBody] RegisterPersonaDTO persona)
         {
-            var response = new Response<Persona>()
+            var response = await _authService.registrarPersona(persona);
+            if (response.Datos == null)
             {
-                Exito = false,
-                Datos = null
-            };
-            try
-            {
-                if (!await _context.Personas.AnyAsync(x => x.usuario == persona.usuario || x.email == persona.email))
+                if (response.Mensaje.StartsWith("Error interno"))
                 {
-                    var userToSave = persona.Adapt<Persona>();
-                    userToSave.alta = DateTime.Now;
-                    byte[] passwBytes = Encoding.UTF8.GetBytes(persona.clave);
-                    byte[] salt = _hasher.generateSalt();
-                    userToSave.sal = Convert.ToBase64String(salt);
-                    byte[] combinedBytes = new byte[passwBytes.Length + salt.Length];
-                    Array.Copy(passwBytes, combinedBytes, passwBytes.Length);   
-                    Array.Copy(salt, 0, combinedBytes, passwBytes.Length, salt.Length);
-                    userToSave.clave = _hasher.generateHash(combinedBytes);
-                    var userBD = await _context.Personas.AddAsync(userToSave);
-                    await _context.SaveChangesAsync();
-                    response.Datos = userBD.Entity;
-                    response.Exito = true;
-                    response.Mensaje = "Registro completado con exito";
-                    return StatusCode(StatusCodes.Status201Created, response); 
+                    return StatusCode(StatusCodes.Status500InternalServerError, response);
                 }
-                response.Mensaje = "El usuario o mail ya existen";
                 return BadRequest(response);
             }
-            catch (Exception ex)
-            {
-                response.Mensaje = "Error interno: " + ex.Message;
-                return StatusCode(StatusCodes.Status500InternalServerError, response);
-            }
+            return StatusCode(StatusCodes.Status500InternalServerError, response);            
         }
 
         [HttpPost]
-        public async Task<ActionResult<Response<string?>>> loguearJWT([FromBody] LoginJWTDto request)
+        public async Task<ActionResult<Response<string>>> loguearJWT([FromBody] LoginJWTDto request)
         {
-            var response = new Response<string>();
-            response.Exito = false;
-            response.Datos = null;
-            try
+            var response = await _authService.loguearJWT(request);
+            if (response.Datos == null)
             {
-                if (await _context.SistemasExternos.AnyAsync(x => x.id.ToString() == request.clientId && x.secreto == request.clientSecret))
+                if (response.Mensaje.StartsWith("Error interno"))
                 {
-                    var authorizationCodeBD = await _context.CodigosAccesos.FirstOrDefaultAsync(x => x.codigo == request.authorizationCode);
-                    if (authorizationCodeBD != null && authorizationCodeBD.utilizado != true)
-                    {
-                        var personaBD = await _context.Personas.FindAsync(authorizationCodeBD.usuarioId);
-                        var sistemaBD = await _context.SistemasExternos.FindAsync(authorizationCodeBD.sistemaExternoId);
-                        XmlDocument doc = new XmlDocument();
-                        doc.Load("ClavePrivada.xml");
-                        string contenidoXML = doc.InnerXml;
-                        var token = Asimetria.GenerarTokenJWT(contenidoXML, personaBD.nombre, personaBD.apellido, personaBD.cuil,personaBD.email, personaBD.estadoCrediticio, personaBD.rol, "SRVP", sistemaBD.nombre, DateTime.Now.AddDays(1));
-                        response.Exito = true;
-                        response.Datos = token;
-                        response.Mensaje = "El token fue generado correctamente";
-                        authorizationCodeBD.utilizado = true;
-                        await _context.SaveChangesAsync();
-                        return Ok(response);
-                    }
-                    response.Mensaje = "El codigo de autorizacion no existe o ya fue utilizado";
-                    return BadRequest(response);
+                    return StatusCode(StatusCodes.Status500InternalServerError, response);
                 }
-                response.Mensaje = "El id o el secreto del cliente son incorrectos";
                 return BadRequest(response);
-            }catch(Exception ex)
-            {
-                response.Mensaje = "Error interno: " + ex.Message;
-                return StatusCode(StatusCodes.Status500InternalServerError, response);
             }
+            return Ok(response);
         }
-        
-        //To do Post para login interno
+        [HttpPost]
+        public async Task<ActionResult<Response<RespuestaLogin>>> loguearInterno([FromBody] LoginInternoDto user)
+        {
+            var response = await _authService.loguearInterno(user);
+            if (response.Datos == null)
+            {
+                if (response.Mensaje.StartsWith("Error interno"))
+                {
+                    return StatusCode(StatusCodes.Status500InternalServerError, response);
+                }
+                return BadRequest(response);
+            }
+            return Ok(response);
+        }
+
+        //To do Post para login interno done
     }
 }

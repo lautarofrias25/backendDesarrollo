@@ -18,6 +18,7 @@ builder.Services.AddDbContext<SRVPContext>(options =>
 builder.Services.AddControllers();
 builder.Services.AddScoped<IPersonaService, PersonaService>();
 builder.Services.AddScoped<ISistemaExternoService, SistemaExternoService>();
+builder.Services.AddScoped<IAuthService, AuthService>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
