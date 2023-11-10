@@ -5,11 +5,12 @@ using SRVP.Data;
 using SRVP.Data.DTOs;
 using SRVP.Data.DTOs.Persona;
 using SRVP.Data.Models;
+using SRVP.DTOs;
 using SRVP.DTOs.Persona;
 using SRVP.Helpers;
 using SRVP.Models;
-using System.Data.SqlTypes;
 using System.Text;
+using System.Xml;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -122,5 +123,45 @@ namespace SRVP.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, response);
             }
         }
+
+        [HttpPost]
+        public async Task<ActionResult<Response<string?>>> loguearJWT([FromBody] LoginJWTDto request)
+        {
+            var response = new Response<string>();
+            response.Exito = false;
+            response.Datos = null;
+            try
+            {
+                if (await _context.SistemasExternos.AnyAsync(x => x.id.ToString() == request.clientId && x.secreto == request.clientSecret))
+                {
+                    var authorizationCodeBD = await _context.CodigosAccesos.FirstOrDefaultAsync(x => x.codigo == request.authorizationCode);
+                    if (authorizationCodeBD != null && authorizationCodeBD.utilizado != true)
+                    {
+                        var personaBD = await _context.Personas.FindAsync(authorizationCodeBD.usuarioId);
+                        var sistemaBD = await _context.SistemasExternos.FindAsync(authorizationCodeBD.sistemaExternoId);
+                        XmlDocument doc = new XmlDocument();
+                        doc.Load("ClavePrivada.xml");
+                        string contenidoXML = doc.InnerXml;
+                        var token = Asimetria.GenerarTokenJWT(contenidoXML, personaBD.nombre, personaBD.apellido, personaBD.cuil,personaBD.email, personaBD.estadoCrediticio, personaBD.rol, "SRVP", sistemaBD.nombre, DateTime.Now.AddDays(1));
+                        response.Exito = true;
+                        response.Datos = token;
+                        response.Mensaje = "El token fue generado correctamente";
+                        authorizationCodeBD.utilizado = true;
+                        await _context.SaveChangesAsync();
+                        return Ok(response);
+                    }
+                    response.Mensaje = "El codigo de autorizacion no existe o ya fue utilizado";
+                    return BadRequest(response);
+                }
+                response.Mensaje = "El id o el secreto del cliente son incorrectos";
+                return BadRequest(response);
+            }catch(Exception ex)
+            {
+                response.Mensaje = "Error interno: " + ex.Message;
+                return StatusCode(StatusCodes.Status500InternalServerError, response);
+            }
+        }
+        
+        //To do Post para login interno
     }
 }

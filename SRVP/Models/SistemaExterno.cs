@@ -12,8 +12,8 @@ namespace SRVP.Data.Models
         [Required]
         public string secreto { get; set; }
         [Required]
-        public string cuit { get; set; }
+        public string cuit { get; set; }    //Dudoso el tema cuit
         public string paginaRetorno { get; set; }
-        public string publicoId { get; set; }
+        //public string publicoId { get; set; } redundante
     }
 }

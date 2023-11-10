@@ -26,6 +26,10 @@ namespace SRVP.Controllers
             var response = await _service.PostSistemaExterno(sistemaExternoDTO);
             if (response.Datos == null)
             {
+                if(response.Mensaje.StartsWith("Error interno"))
+                {
+                    return StatusCode(StatusCodes.Status500InternalServerError, response);
+                }
                 return BadRequest(response);
             }
             return Ok(response);

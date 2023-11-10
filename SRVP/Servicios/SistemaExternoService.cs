@@ -1,12 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SRVP.Data;
-using SRVP.Data.DTOs.Persona;
 using SRVP.Data.DTOs;
 using SRVP.Data.Models;
+using Mapster;
+using SRVP.Interfaces;
 
 namespace SRVP.Servicios
 {
-    public class SistemaExternoService
+    public class SistemaExternoService : ISistemaExternoService
     {
         private readonly SRVPContext _context;
 
@@ -17,33 +18,28 @@ namespace SRVP.Servicios
         public async Task<Response<SistemaExterno>> PostSistemaExterno(SistemaExternoDTO sistemaExternoDTO)
         {
             var response = new Response<SistemaExterno>();
+            response.Datos = null;
+            response.Exito = false;
             try
             {
-                var sistemaExternoDB = await _context.SistemasExternos.FirstOrDefaultAsync(x => x.cuit == sistemaExternoDTO.cuit);
-                if (sistemaExternoDB == null)
+                var sistemaExternoDB = await _context.SistemasExternos.AnyAsync(x => x.cuit == sistemaExternoDTO.cuit || x.nombre == sistemaExternoDTO.nombre || x.secreto == sistemaExternoDTO.secreto);
+                if (!sistemaExternoDB)
                 {
-                    var sistema = new SistemaExterno();
-                    sistema.nombre = sistemaExternoDTO.nombre;
-                    sistema.cuit = sistemaExternoDTO.cuit;
-                    sistema.secreto = sistemaExternoDTO.secreto;
-
-                    _context.SistemasExternos.Add(sistema);
-                    _context.SaveChanges();
+                    var sistema = sistemaExternoDTO.Adapt<SistemaExterno>();
+                    
+                    await _context.SistemasExternos.AddAsync(sistema);
+                    await _context.SaveChangesAsync();
                     response.Exito = true;
-                    response.Mensaje = "La persona se ha creado correctamente";
+                    response.Mensaje = "El sistema se ha creado correctamente";
                     response.Datos = sistema;
                     return (response);
-                }
-                response.Datos = sistemaExternoDB;
-                response.Exito = false;
+                }              
                 response.Mensaje = "El sistema que intenta crear ya existe";
                 return (response);
             }
             catch (Exception ex)
-            {
-                response.Datos = null;
-                response.Exito = false;
-                response.Mensaje = "No se pudo crear el sistema : " + ex.Message;
+            {  
+                response.Mensaje = "Error interno: " + ex.Message;
                 return (response);
             }
         }
