@@ -3,10 +3,11 @@ using System.Security.Claims;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using SRVP.Data.Models;
+using SRVP.Interfaces;
 
 namespace SRVP.Helpers;
 
-public class JWT
+public class JWT : IJWT
 {
     private readonly IConfiguration _configuration;
 

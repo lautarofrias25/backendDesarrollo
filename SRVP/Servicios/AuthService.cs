@@ -18,9 +18,9 @@ namespace SRVP.Servicios
     public class AuthService : IAuthService
     {
         private readonly SRVPContext _context;
-        private readonly Hasher _hasher;
-        private readonly JWT _jwt;
-        public AuthService(SRVPContext context, Hasher hasher, JWT jwt)
+        private readonly IHasher _hasher;
+        private readonly IJWT _jwt;
+        public AuthService(SRVPContext context, IHasher hasher, IJWT jwt)
         {
             _context = context;
             _hasher = hasher;

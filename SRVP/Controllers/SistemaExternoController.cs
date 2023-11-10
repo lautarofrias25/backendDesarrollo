@@ -3,7 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using SRVP.Data.DTOs.Persona;
 using SRVP.Data.DTOs;
 using SRVP.Data.Models;
-using SRVP.Servicios;
+using SRVP.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SRVP.Controllers
 {
@@ -11,16 +12,16 @@ namespace SRVP.Controllers
     [ApiController]
     public class SistemaExternoController : ControllerBase
     {
-        private readonly SistemaExternoService _service;
+        private readonly ISistemaExternoService _service;
 
-         public SistemaExternoController(SistemaExternoService service)
+         public SistemaExternoController(ISistemaExternoService service)
          {
             _service = service;
          }
 
         // POST: SistemaExternoController/Create
+        [AllowAnonymous]
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<ActionResult<Response<SistemaExterno>>> PostSistemaExterno([FromBody] SistemaExternoDTO sistemaExternoDTO)
         {
             var response = await _service.PostSistemaExterno(sistemaExternoDTO);

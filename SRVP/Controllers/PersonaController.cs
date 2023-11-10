@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SRVP.Data.DTOs;
 using SRVP.Data.DTOs.Persona;
 using SRVP.Data.Models;
+using SRVP.Interfaces;
 using SRVP.Servicios;
 
 namespace SRVP.Controllers
@@ -11,14 +13,15 @@ namespace SRVP.Controllers
     [ApiController]
     public class PersonaController : ControllerBase
     {
-        private readonly PersonaService _service;
+        private readonly IPersonaService _service;
 
-        public PersonaController(PersonaService service)
+        public PersonaController(IPersonaService service)
         {
             _service = service;
         }
 
         // GET: PersonaController
+        [Authorize(AuthenticationSchemes = "SymmetricScheme, AsymmetricScheme")]
         [HttpGet]
         public async Task<ActionResult<Response<ICollection<PersonaDTO>>>> GetPersonasAsync()
         {
@@ -35,6 +38,7 @@ namespace SRVP.Controllers
         }
 
         // GET: PersonaController/GetPersona/5
+        [Authorize(AuthenticationSchemes = "SymmetricScheme, AsymmetricScheme")]
         [HttpGet("{id}")]
         public async Task<ActionResult<Response<PersonaDTO>>> GetPersona(int id)
         {
@@ -51,6 +55,7 @@ namespace SRVP.Controllers
         }
 
         // POST: PersonaController/Create
+        [Authorize(AuthenticationSchemes = "SymmetricScheme")]
         [HttpPost]
         //[ValidateAntiForgeryToken]
         public async Task<ActionResult<Response<Persona>>> PostPersona([FromBody] RegisterPersonaDTO personaDTO)
@@ -68,6 +73,7 @@ namespace SRVP.Controllers
         }
 
         // PUT: PersonaController/PutPersona/5
+        [Authorize(AuthenticationSchemes = "SymmetricScheme")]
         [HttpPut]
         public async Task<ActionResult<Response<Persona>>> PutPersona([FromBody] PersonaDTO personaDTO)
         {
@@ -85,6 +91,7 @@ namespace SRVP.Controllers
         }
 
         // DELETE: PersonaController/DeletePersona/5
+        [Authorize(AuthenticationSchemes = "SymmetricScheme")]
         [HttpDelete]
         public async Task<ActionResult<Response<Persona>>> DeletePersona(int id)
         {

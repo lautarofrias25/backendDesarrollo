@@ -1,10 +1,11 @@
+using SRVP.Interfaces;
 using System.Runtime.Intrinsics.Arm;
 using System.Security.Cryptography;
 using System.Text;
 
 namespace SRVP.Helpers;
 
-public class Hasher
+public class Hasher : IHasher
 {
     private readonly string caracteresPermitidos = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
     public string generateHash(byte[] toHash)

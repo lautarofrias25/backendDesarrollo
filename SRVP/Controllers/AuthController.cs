@@ -1,17 +1,12 @@
-﻿using Mapster;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using SRVP.Data;
 using SRVP.Data.DTOs;
 using SRVP.Data.DTOs.Persona;
 using SRVP.Data.Models;
 using SRVP.DTOs;
 using SRVP.DTOs.Persona;
-using SRVP.Helpers;
-using SRVP.Models;
-using SRVP.Servicios;
-using System.Text;
-using System.Xml;
+using SRVP.Interfaces;
+
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -21,13 +16,14 @@ namespace SRVP.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
-        private readonly AuthService _authService;
-        public AuthController (AuthService authService)
+        private readonly IAuthService _authService;
+        public AuthController (IAuthService authService)
         {
             _authService = authService;
         }
         // POST api/<AuthController>
-        [HttpPost]
+        [AllowAnonymous]
+        [HttpPost("loguearAccessCode")]
         public async Task<ActionResult<Response<string>>> loguearAccessCode([FromBody] PersonaLoginDto user)
         {
             var response = await _authService.loguearAccessCode(user);
@@ -43,7 +39,8 @@ namespace SRVP.Controllers
         }
 
         // PUT api/<AuthController>/5
-        [HttpPost]
+        [AllowAnonymous]
+        [HttpPost("registrarPersona")]
         public async Task<ActionResult<Response<Persona>>> registrarPersona([FromBody] RegisterPersonaDTO persona)
         {
             var response = await _authService.registrarPersona(persona);
@@ -58,7 +55,8 @@ namespace SRVP.Controllers
             return StatusCode(StatusCodes.Status500InternalServerError, response);            
         }
 
-        [HttpPost]
+        [AllowAnonymous]
+        [HttpPost("loguearJWT")]
         public async Task<ActionResult<Response<string>>> loguearJWT([FromBody] LoginJWTDto request)
         {
             var response = await _authService.loguearJWT(request);
@@ -72,7 +70,9 @@ namespace SRVP.Controllers
             }
             return Ok(response);
         }
-        [HttpPost]
+
+        [AllowAnonymous]
+        [HttpPost("loguearInterno")]
         public async Task<ActionResult<Response<RespuestaLogin>>> loguearInterno([FromBody] LoginInternoDto user)
         {
             var response = await _authService.loguearInterno(user);

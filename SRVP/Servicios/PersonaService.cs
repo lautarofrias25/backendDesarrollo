@@ -46,7 +46,8 @@ namespace SRVP.Servicios
                     }
                     response.Datos = personasDTO;
                     response.Exito = true;
-                    response.Mensaje = "Se recuperaron correctamente todas las personas"
+                    response.Mensaje = "Se recuperaron correctamente todas las personas";
+                    return response;
                 }
                
                 response.Mensaje = "No se hallaron personas";
