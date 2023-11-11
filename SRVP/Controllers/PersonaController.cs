@@ -106,7 +106,30 @@ namespace SRVP.Controllers
             }
             return Ok(response);
         }
+
+
         // Falta un get que devuelva el estado crediticio de un usuario
         // un put que cambie todos los estados crediticios
+
+        //ok, revisar si esta bien. 
+        //en vez de hacer un put para cambiar el estado crediticio (por que no se para que)
+        //use el mismo getEstadoCrediticio de un usuario para cambiarlo
+
+        //GET PersonaController/GetEstadoCrediticio/5
+        [Authorize(AuthenticationSchemes = "SymmetricScheme, AsymmetricScheme")]
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Response<bool>>> GetEstadoCrediticio(int id)
+        {
+            var response = await _service.GetEstadoCrediticio(id);
+            if (response.Datos == null) //no se si esta bien
+            {
+                if (response.Mensaje.StartsWith("Error interno"))
+                {
+                    return StatusCode(StatusCodes.Status500InternalServerError, response);
+                }
+                return NotFound(response);
+            }
+            return Ok(response);
+        }
     }
 }

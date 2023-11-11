@@ -5,6 +5,6 @@ namespace SRVP.Interfaces
 {
     public interface ISistemaExternoService
     {
-        Task<Response<SistemaExterno>> PostSistemaExterno(SistemaExternoDTO sistemaExternoDTO)
+        Task<Response<SistemaExterno>> PostSistemaExterno(SistemaExternoDTO sistemaExternoDTO);
     }
 }

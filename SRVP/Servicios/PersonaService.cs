@@ -7,6 +7,7 @@ using SRVP.Data.Models;
 using SRVP.Data.DTOs;
 using SRVP.Interfaces;
 using Mapster;
+using System;
 
 namespace SRVP.Servicios
 {
@@ -87,6 +88,34 @@ namespace SRVP.Servicios
                     response.Datos = personaDTO;
                     response.Exito = true;
                     response.Mensaje = "Se recupero correctamente la persona";
+                    return (response);
+                };
+                response.Mensaje = "No se hallo la persona";
+                return (response);
+            }
+            catch (Exception ex)
+            {
+                response.Mensaje = "Error interno : " + ex.Message;
+                return (response);
+            }
+        }
+
+        public async Task<Response<bool>> GetEstadoCrediticio(int id) //el bool en response esta bien?
+        {
+            var response = new Response<bool>();
+            response.Datos = false; //no se si esta bien
+            response.Exito = false;
+            try
+            {
+                var persona = await _context.Personas.FirstOrDefaultAsync(x => x.id == id);
+                if (persona != null)
+                {
+                    var random = new Random();
+                    persona.estadoCrediticio = (random.Next(2) == 1);
+                    await _context.SaveChangesAsync();
+                    response.Datos = persona.estadoCrediticio;
+                    response.Exito = true;
+                    response.Mensaje = "Se recupero correctamente el estado crediticio";
                     return (response);
                 };
                 response.Mensaje = "No se hallo la persona";
