@@ -110,9 +110,7 @@ namespace SRVP.Servicios
                 var persona = await _context.Personas.FirstOrDefaultAsync(x => x.id == id);
                 if (persona != null)
                 {
-                    var random = new Random();
-                    persona.estadoCrediticio = (random.Next(2) == 1);
-                    await _context.SaveChangesAsync();
+                    
                     response.Datos = persona.estadoCrediticio;
                     response.Exito = true;
                     response.Mensaje = "Se recupero correctamente el estado crediticio";
@@ -198,6 +196,41 @@ namespace SRVP.Servicios
             {
                 response.Mensaje = "Error interno : " + ex.Message;
                 return response;
+            }
+        }
+
+        public async Task<Response<ICollection<PersonaDTO>>> PutEstadosCrediticios()
+        {
+            var response = new Response<ICollection<PersonaDTO>>();
+            response.Exito = false;
+            response.Datos = null;
+            try
+            {
+                var personas = await _context.Personas.ToListAsync();
+                if (personas != null)
+                {
+                    var personasDTO = new List<PersonaDTO>(); //no se si es necesario
+                    foreach (var persona in personas)
+                    {
+                        var personaDTO = persona.Adapt<PersonaDTO>(); //no se si es necesario
+                        var random = new Random();
+                        persona.estadoCrediticio = (random.Next(2) == 1);
+                        personasDTO.Add(personaDTO); //no se si es necesario
+                    }
+                    await _context.SaveChangesAsync();
+                    response.Datos = personasDTO; //no se si es necesario
+                    response.Exito = true;
+                    response.Mensaje = "Se cambiaron todos los estados crediticios correctamente";
+                    return response;
+                }
+
+                response.Mensaje = "No se hallaron personas";
+                return (response);
+            }
+            catch (Exception ex)
+            {
+                response.Mensaje = "Error interno : " + ex.Message;
+                return (response);
             }
         }
 

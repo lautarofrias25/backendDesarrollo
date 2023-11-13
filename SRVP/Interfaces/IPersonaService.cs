@@ -11,5 +11,7 @@ public interface IPersonaService
     Task<Response<bool>> GetEstadoCrediticio(int id);
     Task<Response<Persona>> PostPersona(RegisterPersonaDTO personaDTO);
     Task<Response<Persona>> PutPersona(PersonaDTO personaDTO);
+    Task<Response<ICollection<PersonaDTO>>> PutEstadosCrediticios();
     Task<Response<Persona>> DeletePersona(int id);
+
 }
