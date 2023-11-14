@@ -12,8 +12,8 @@ namespace SRVP.Data.DTOs.Persona
         public string usuario { get; set; }
         public string email { get; set; }
         public string clave { get; set; }
-        public string genero { get; set; }
-        public string rol {  get; set; }
+        //public string genero { get; set; }
+        //public string rol {  get; set; }
         public int telefono { get; set; }
         public bool habilitado { get; set; } = false;
         public bool vivo { get; set; }

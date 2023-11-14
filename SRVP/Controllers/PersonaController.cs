@@ -113,12 +113,12 @@ namespace SRVP.Controllers
         //ok, revisar si esta bien. 
         
         //GET PersonaController/GetEstadoCrediticio/5
-        [Authorize(AuthenticationSchemes = "SymmetricScheme, AsymmetricScheme")]
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Response<bool>>> GetEstadoCrediticio(int id)
+        [Authorize(AuthenticationSchemes = "AsymmetricScheme")]
+        [HttpGet("{cuit}")]
+        public async Task<ActionResult<Response<bool?>>> GetEstadoCrediticio(int cuil)
         {
-            var response = await _service.GetEstadoCrediticio(id);
-            if (response.Datos == false) //no se si esta bien
+            var response = await _service.GetEstadoCrediticio(cuil);
+            if (response.Datos == null) //no se si esta bien
             {
                 if (response.Mensaje.StartsWith("Error interno"))
                 {
@@ -130,11 +130,27 @@ namespace SRVP.Controllers
         }
 
         // PUT: PersonaController/PutEstadosCrediticios
-        [Authorize(AuthenticationSchemes = "SymmetricScheme, AsymmetricScheme")]
-        [HttpPut] //REVISAR
+        [Authorize(AuthenticationSchemes = "SymmetricScheme")]
+        [HttpPatch] //REVISAR
         public async Task<ActionResult<Response<bool>>> PutEstadosCrediticios()
         {
-            var response = await _service.PutEstadosCrediticios();
+            var response = await _service.PatchEstadosCrediticios();
+            if (response.Datos == null)
+            {
+                if (response.Mensaje.StartsWith("Error interno"))
+                {
+                    return StatusCode(StatusCodes.Status500InternalServerError, response);
+                }
+                return NotFound(response);
+            }
+            return Ok(response);
+        }
+
+        [Authorize(AuthenticationSchemes = "AsymmetricScheme")]
+        [HttpPatch]
+        public async Task<ActionResult<Response<PersonaDTO>>> PatchEstadoCrediticio(int cuil, bool nuevoEstado)
+        {
+            var response = await _service.PatchEstadoCrediticio(cuil, nuevoEstado);
             if (response.Datos == null)
             {
                 if (response.Mensaje.StartsWith("Error interno"))

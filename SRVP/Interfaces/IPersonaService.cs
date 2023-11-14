@@ -8,10 +8,11 @@ public interface IPersonaService
 {
     Task<Response<ICollection<PersonaDTO>>> GetPersonas();
     Task<Response<PersonaDTO>> GetPersona(int id);
-    Task<Response<bool>> GetEstadoCrediticio(int id);
+    Task<Response<bool?>> GetEstadoCrediticio(int id);
     Task<Response<Persona>> PostPersona(RegisterPersonaDTO personaDTO);
     Task<Response<Persona>> PutPersona(PersonaDTO personaDTO);
-    Task<Response<ICollection<PersonaDTO>>> PutEstadosCrediticios();
+    Task<Response<ICollection<PersonaDTO>>> PatchEstadosCrediticios();
+    Task<Response<PersonaDTO>> PatchEstadoCrediticio(int cuil, bool nuevoEstado);
     Task<Response<Persona>> DeletePersona(int id);
 
 }

@@ -22,7 +22,7 @@ namespace SRVP.Servicios
             response.Exito = false;
             try
             {
-                var sistemaExternoDB = await _context.SistemasExternos.AnyAsync(x => x.cuit == sistemaExternoDTO.cuit || x.nombre == sistemaExternoDTO.nombre || x.secreto == sistemaExternoDTO.secreto);
+                var sistemaExternoDB = await _context.SistemasExternos.AnyAsync(x => (x.nombre == sistemaExternoDTO.nombre || x.secreto == sistemaExternoDTO.secreto));
                 if (!sistemaExternoDB)
                 {
                     var sistema = sistemaExternoDTO.Adapt<SistemaExterno>();

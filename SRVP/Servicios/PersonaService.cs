@@ -33,17 +33,20 @@ namespace SRVP.Servicios
                     var personasDTO = new List<PersonaDTO>();
                     foreach (var persona in personas)
                     {
-                        var personaDTO = persona.Adapt<PersonaDTO>();
-                        /*personaDTO.id = persona.id;
-                        personaDTO.nombre = persona.nombre;
-                        personaDTO.apellido = persona.apellido;
-                        personaDTO.cuil = persona.cuil;
-                        personaDTO.dni = persona.dni;
-                        personaDTO.fechaNacimiento = persona.fechaNacimiento; //VER
-                        personaDTO.habilitado = persona.habilitado;
-                        personaDTO.vivo = persona.vivo;
-                        personaDTO.estadoCrediticio = persona.estadoCrediticio;*/
-                        personasDTO.Add(personaDTO);
+                        if (persona.rol != "Administrador")
+                        {
+                            var personaDTO = persona.Adapt<PersonaDTO>();
+                            /*personaDTO.id = persona.id;
+                            personaDTO.nombre = persona.nombre;
+                            personaDTO.apellido = persona.apellido;
+                            personaDTO.cuil = persona.cuil;
+                            personaDTO.dni = persona.dni;
+                            personaDTO.fechaNacimiento = persona.fechaNacimiento; //VER
+                            personaDTO.habilitado = persona.habilitado;
+                            personaDTO.vivo = persona.vivo;
+                            personaDTO.estadoCrediticio = persona.estadoCrediticio;*/
+                            personasDTO.Add(personaDTO);
+                        }
                     }
                     response.Datos = personasDTO;
                     response.Exito = true;
@@ -69,7 +72,7 @@ namespace SRVP.Servicios
             try
             {
                 var persona = await _context.Personas.FirstOrDefaultAsync(x => x.id == id);
-                if (persona != null)
+                if (persona != null && persona.rol != "Administrador")
                 {
                     var personaDTO = persona.Adapt<PersonaDTO>();
                     /*
@@ -100,15 +103,15 @@ namespace SRVP.Servicios
             }
         }
 
-        public async Task<Response<bool>> GetEstadoCrediticio(int id) //el bool en response esta bien?
+        public async Task<Response<bool?>> GetEstadoCrediticio(int cuil) //el bool en response esta bien?
         {
-            var response = new Response<bool>();
-            response.Datos = false; //no se si esta bien
+            var response = new Response<bool?>();
+            response.Datos = null; //no se si esta bien     no esta bien porque si no se encuentra la persona igual devolves false                                                          
             response.Exito = false;
             try
             {
-                var persona = await _context.Personas.FirstOrDefaultAsync(x => x.id == id);
-                if (persona != null)
+                var persona = await _context.Personas.FirstOrDefaultAsync(x => x.cuil == cuil);
+                if (persona != null && persona.rol != "Administrador")
                 {
                     
                     response.Datos = persona.estadoCrediticio;
@@ -147,6 +150,7 @@ namespace SRVP.Servicios
                     persona.vivo = personaDTO.vivo;
                     persona.estadoCrediticio = personaDTO.estadoCrediticio;
                     */
+                    persona.rol = "Usuario";
                     var personaBD = await _context.Personas.AddAsync(persona);
                     await _context.SaveChangesAsync();
                     response.Exito = true;
@@ -198,8 +202,8 @@ namespace SRVP.Servicios
                 return response;
             }
         }
-
-        public async Task<Response<ICollection<PersonaDTO>>> PutEstadosCrediticios()
+        
+        public async Task<Response<ICollection<PersonaDTO>>> PatchEstadosCrediticios()
         {
             var response = new Response<ICollection<PersonaDTO>>();
             response.Exito = false;
@@ -225,6 +229,34 @@ namespace SRVP.Servicios
                 }
 
                 response.Mensaje = "No se hallaron personas";
+                return (response);
+            }
+            catch (Exception ex)
+            {
+                response.Mensaje = "Error interno : " + ex.Message;
+                return (response);
+            }
+        }
+      
+        public async Task<Response<PersonaDTO>> PatchEstadoCrediticio(int cuil, bool nuevoEstado)
+        {
+            var response = new Response<PersonaDTO>();
+            response.Exito = false;
+            response.Datos = null;
+            try
+            {
+                var personaBD = await _context.Personas.FirstOrDefaultAsync(x => x.cuil == cuil);
+                if (personaBD != null)
+                {
+                    personaBD.estadoCrediticio = nuevoEstado;
+                    await _context.SaveChangesAsync();
+                    var personaDTO = personaBD.Adapt<PersonaDTO>();
+                    response.Datos = personaDTO;
+                    response.Exito = true;
+                    response.Mensaje = "El estado crediticio fue modificado con exito";
+                    return response;
+                }
+                response.Mensaje = "No se ha podido hallar a la persona";
                 return (response);
             }
             catch (Exception ex)
