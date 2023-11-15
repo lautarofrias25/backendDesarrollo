@@ -14,7 +14,7 @@ namespace SRVP.Data.DTOs.Persona
         public string clave { get; set; }
         //public string genero { get; set; }
         //public string rol {  get; set; }
-        public int telefono { get; set; }
+        //public int telefono { get; set; }
         //public bool habilitado { get; set; } = false;
         //public bool vivo { get; set; }
         //public bool estadoCrediticio { get; set; }

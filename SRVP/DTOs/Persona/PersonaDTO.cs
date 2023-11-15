@@ -9,7 +9,6 @@
         public int dni { get; set; }
         public DateOnly fechaNacimiento { get; set; }
         public string rol { get; set; }
-        public int telefono { get; set; }
         public bool habilitado { get; set; } = false;
         public bool vivo { get; set; }
         public bool estadoCrediticio { get; set; }
