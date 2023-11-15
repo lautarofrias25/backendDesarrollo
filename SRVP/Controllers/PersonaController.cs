@@ -131,8 +131,8 @@ namespace SRVP.Controllers
 
         // PUT: PersonaController/PutEstadosCrediticios
         [Authorize(AuthenticationSchemes = "SymmetricScheme")]
-        [HttpPatch] //REVISAR
-        public async Task<ActionResult<Response<bool>>> PutEstadosCrediticios()
+        [HttpPatch("PatchEstadosCrediticios")] //REVISAR
+        public async Task<ActionResult<Response<bool>>> PatchEstadosCrediticios()
         {
             var response = await _service.PatchEstadosCrediticios();
             if (response.Datos == null)
@@ -147,7 +147,7 @@ namespace SRVP.Controllers
         }
 
         [Authorize(AuthenticationSchemes = "AsymmetricScheme")]
-        [HttpPatch]
+        [HttpPatch("PatchEstadoCrediticio")]
         public async Task<ActionResult<Response<PersonaDTO>>> PatchEstadoCrediticio(int cuil, bool nuevoEstado)
         {
             var response = await _service.PatchEstadoCrediticio(cuil, nuevoEstado);

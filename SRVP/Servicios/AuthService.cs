@@ -95,7 +95,9 @@ namespace SRVP.Servicios
                 if (!await _context.Personas.AnyAsync(x => x.usuario == persona.usuario || x.email == persona.email))
                 {
                     var userToSave = persona.Adapt<Persona>();
-                    userToSave.alta = DateTime.Now;
+                    userToSave.alta = DateTime.Now.ToUniversalTime();
+                    
+                    userToSave.rol = "Usuario";
                     byte[] passwBytes = Encoding.UTF8.GetBytes(persona.clave);
                     byte[] salt = _hasher.generateSalt();
                     userToSave.sal = Convert.ToBase64String(salt);
