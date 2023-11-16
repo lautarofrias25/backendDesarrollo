@@ -17,7 +17,7 @@ namespace SRVP.Helpers
             var claveRSA = new RsaSecurityKey(proveedorRSA);
             return claveRSA;
         }
-        public static string GenerarTokenJWT(string claveEnXML, string nombre, string apellido, int cuil, string email, bool estadoCrediticio, string rol, string autor, string audiencia, DateTime vencimiento)
+        public static string GenerarTokenJWT(string claveEnXML, string nombre, string apellido, long cuil, string email, bool estadoCrediticio, string rol, string autor, string audiencia, DateTime vencimiento)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
             var Identity = new ClaimsIdentity(new[]

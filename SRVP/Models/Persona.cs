@@ -12,9 +12,9 @@ namespace SRVP.Data.Models
         [Required]
         public string apellido { get; set; }
         [Required]
-        public int cuil { get; set; }
+        public long cuil { get; set; }
         [Required]
-        public int dni { get; set; }
+        public long dni { get; set; }
         [Required]
         public DateOnly fechaNacimiento { get; set; }
         [Required]

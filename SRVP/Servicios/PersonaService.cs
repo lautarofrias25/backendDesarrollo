@@ -8,6 +8,7 @@ using SRVP.Data.DTOs;
 using SRVP.Interfaces;
 using Mapster;
 using System;
+using SRVP.DTOs.Persona;
 
 namespace SRVP.Servicios
 {
@@ -129,9 +130,9 @@ namespace SRVP.Servicios
             }
         }
 
-        public async Task<Response<Persona>> PostPersona(RegisterPersonaDTO personaDTO)
+        public async Task<Response<PersonaDTO>> PostPersona(RegisterPersonaDTO personaDTO)
         {
-            var response = new Response<Persona>();
+            var response = new Response<PersonaDTO>();
             response.Datos = null;
             response.Exito = false;
             try
@@ -155,7 +156,7 @@ namespace SRVP.Servicios
                     await _context.SaveChangesAsync();
                     response.Exito = true;
                     response.Mensaje = "La persona se ha creado correctamente";
-                    response.Datos = personaBD.Entity;
+                    response.Datos = personaBD.Entity.Adapt<PersonaDTO>();
                     return (response);
                 }
                 response.Mensaje = "La persona que intenta crear ya existe";
@@ -168,9 +169,9 @@ namespace SRVP.Servicios
             }
         }
 
-        public async Task<Response<Persona>> PutPersona(PersonaDTO personaDTO)
+        public async Task<Response<PersonaDTO>> PutPersona(PutPersonaDTO personaDTO)
         {
-            var response = new Response<Persona>();
+            var response = new Response<PersonaDTO>();
             response.Datos = null;
             response.Exito = false;
             try
@@ -188,7 +189,7 @@ namespace SRVP.Servicios
                     personaBD.vivo = personaDTO.vivo;
                     personaBD.estadoCrediticio = personaDTO.estadoCrediticio;*/
                     await _context.SaveChangesAsync();
-                    response.Datos = personaBD;
+                    response.Datos = personaBD.Adapt<PersonaDTO>();
                     response.Exito = true;
                     response.Mensaje = "La persona se ha modificado correctamente";
                     return response;

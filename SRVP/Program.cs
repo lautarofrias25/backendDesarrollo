@@ -65,7 +65,7 @@ builder.Services.AddAuthentication(opcionesDeAutenticacion =>
 {
     opcionesDeAutenticacion.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
     opcionesDeAutenticacion.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-}).AddJwtBearer("SymmetricScheme", options =>
+}).AddJwtBearer(options =>
 {
     options.TokenValidationParameters = new TokenValidationParameters()
     {
@@ -76,8 +76,7 @@ builder.Services.AddAuthentication(opcionesDeAutenticacion =>
             Encoding.UTF8.GetBytes(builder.Configuration["JWT:ClavePrivada"] ?? string.Empty)
         )
     };
-})
-.AddJwtBearer("AsymmetricScheme", opcionesDeJWT =>
+/*.AddJwtBearer("AsymmetricScheme", opcionesDeJWT =>
 {
     XmlDocument doc = new XmlDocument();
     doc.Load("ClavePublica.xml");
@@ -96,7 +95,7 @@ builder.Services.AddAuthentication(opcionesDeAutenticacion =>
         ValidateIssuer = true,
         ValidIssuer = builder.Configuration["JWT:Issuer"],
         ValidAudience = "TPIntegrador" //DUDAS
-    };
+    };*/
 });
 var app = builder.Build();
 

@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using SRVP.Data.DTOs;
 using SRVP.Data.DTOs.Persona;
 using SRVP.Data.Models;
+using SRVP.DTOs.Persona;
 using SRVP.Interfaces;
 using SRVP.Servicios;
 
@@ -21,8 +22,7 @@ namespace SRVP.Controllers
         }
 
         // GET: PersonaController
-        [Authorize(AuthenticationSchemes = "SymmetricScheme, AsymmetricScheme")]
-        [HttpGet]
+        [HttpGet("getPersonas")]
         public async Task<ActionResult<Response<ICollection<PersonaDTO>>>> GetPersonasAsync()
         {
             var response = await _service.GetPersonas();
@@ -38,8 +38,7 @@ namespace SRVP.Controllers
         }
 
         // GET: PersonaController/GetPersona/5
-        [Authorize(AuthenticationSchemes = "SymmetricScheme, AsymmetricScheme")]
-        [HttpGet("{id}")]
+        [HttpGet("getPersona{id}")]
         public async Task<ActionResult<Response<PersonaDTO>>> GetPersona(int id)
         {
             var response = await _service.GetPersona(id);
@@ -55,10 +54,9 @@ namespace SRVP.Controllers
         }
 
         // POST: PersonaController/Create
-        [Authorize(AuthenticationSchemes = "SymmetricScheme")]
         [HttpPost]
         //[ValidateAntiForgeryToken]
-        public async Task<ActionResult<Response<Persona>>> PostPersona([FromBody] RegisterPersonaDTO personaDTO)
+        public async Task<ActionResult<Response<PersonaDTO>>> PostPersona([FromBody] RegisterPersonaDTO personaDTO)
         {
             var response = await _service.PostPersona(personaDTO);
             if (response.Datos == null)
@@ -73,9 +71,8 @@ namespace SRVP.Controllers
         }
 
         // PUT: PersonaController/PutPersona/5
-        [Authorize(AuthenticationSchemes = "SymmetricScheme")]
         [HttpPut]
-        public async Task<ActionResult<Response<Persona>>> PutPersona([FromBody] PersonaDTO personaDTO)
+        public async Task<ActionResult<Response<PersonaDTO>>> PutPersona([FromBody] PutPersonaDTO personaDTO)
         {
             var response = await _service.PutPersona(personaDTO);
             if (response.Datos == null)
@@ -91,7 +88,6 @@ namespace SRVP.Controllers
         }
 
         // DELETE: PersonaController/DeletePersona/5
-        [Authorize(AuthenticationSchemes = "SymmetricScheme")]
         [HttpDelete]
         public async Task<ActionResult<Response<Persona>>> DeletePersona(int id)
         {
@@ -113,8 +109,7 @@ namespace SRVP.Controllers
         //ok, revisar si esta bien. 
         
         //GET PersonaController/GetEstadoCrediticio/5
-        [Authorize(AuthenticationSchemes = "AsymmetricScheme")]
-        [HttpGet("{cuit}")]
+        [HttpGet("getEstadoCrediticio{cuit}")]
         public async Task<ActionResult<Response<bool?>>> GetEstadoCrediticio(int cuil)
         {
             var response = await _service.GetEstadoCrediticio(cuil);
@@ -130,7 +125,6 @@ namespace SRVP.Controllers
         }
 
         // PUT: PersonaController/PutEstadosCrediticios
-        [Authorize(AuthenticationSchemes = "SymmetricScheme")]
         [HttpPatch("PatchEstadosCrediticios")] //REVISAR
         public async Task<ActionResult<Response<bool>>> PatchEstadosCrediticios()
         {
@@ -146,7 +140,6 @@ namespace SRVP.Controllers
             return Ok(response);
         }
 
-        [Authorize(AuthenticationSchemes = "AsymmetricScheme")]
         [HttpPatch("PatchEstadoCrediticio")]
         public async Task<ActionResult<Response<PersonaDTO>>> PatchEstadoCrediticio(int cuil, bool nuevoEstado)
         {

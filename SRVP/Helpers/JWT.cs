@@ -31,7 +31,7 @@ public class JWT : IJWT
             issuer: null,
             audience: null,
             claims,
-            expires: DateTime.Now.AddDays(1),
+            expires: DateTime.Now.AddHours(2),
             signingCredentials: credentials
         );
         return new JwtSecurityTokenHandler().WriteToken(token);

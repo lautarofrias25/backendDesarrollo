@@ -180,7 +180,8 @@ namespace SRVP.Servicios
                         var data = new RespuestaLogin
                         {
                             token = _jwt.GenerateToken(userDB),
-                            rol = userDB.rol
+                            rol = userDB.rol,
+                            id = userDB.id
                         };
                         respuesta.Datos = data;
                         respuesta.Exito = true;

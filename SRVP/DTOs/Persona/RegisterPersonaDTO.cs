@@ -6,8 +6,8 @@ namespace SRVP.Data.DTOs.Persona
     {
         public string nombre { get; set; }
         public string apellido { get; set; }
-        public int cuil { get; set; }
-        public int dni { get; set; }
+        public long cuil { get; set; }
+        public long dni { get; set; }
         public DateOnly fechaNacimiento { get; set; }
         public string usuario { get; set; }
         public string email { get; set; }
