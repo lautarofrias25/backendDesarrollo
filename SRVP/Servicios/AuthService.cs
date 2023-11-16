@@ -121,7 +121,7 @@ namespace SRVP.Servicios
                 return (response);
             }
         }
-
+        //redirecciona - luego del access code
         public async Task<Response<string>> loguearJWT(LoginJWTDto request)
         {
             var response = new Response<string>();

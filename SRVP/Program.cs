@@ -24,7 +24,7 @@ builder.Services.AddScoped<IJWT, JWT>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(c => {
+builder.Services.AddSwaggerGen(c => { //Autenticar en Swagger
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "SRVP", Version = "v1" });
     c.CustomSchemaIds(c => c.FullName); // Utilizamos los nombres completos de los controladores
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
@@ -65,12 +65,12 @@ builder.Services.AddAuthentication(opcionesDeAutenticacion =>
 {
     opcionesDeAutenticacion.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
     opcionesDeAutenticacion.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-}).AddJwtBearer(options =>
+}).AddJwtBearer(options => //para login de nuestra pagina
 {
     options.TokenValidationParameters = new TokenValidationParameters()
     {
-        ValidateIssuer = false,
-        ValidateAudience = false,
+        ValidateIssuer = false, //nosotros
+        ValidateAudience = false, //no tenemos
         ValidateIssuerSigningKey = true,
         IssuerSigningKey = new SymmetricSecurityKey(
             Encoding.UTF8.GetBytes(builder.Configuration["JWT:ClavePrivada"] ?? string.Empty)
@@ -106,7 +106,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseCors(options =>
+app.UseCors(options => //middleware -> soluciona un problema en el navegador
 {
     options
     .AllowAnyOrigin()

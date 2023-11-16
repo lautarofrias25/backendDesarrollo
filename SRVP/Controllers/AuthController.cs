@@ -21,7 +21,7 @@ namespace SRVP.Controllers
         {
             _authService = authService;
         }
-        // POST api/<AuthController>
+        // POST api/<AuthController> redireccionado
         [AllowAnonymous]
         [HttpPost("loguearAccessCode")]
         public async Task<ActionResult<Response<string>>> loguearAccessCode([FromBody] PersonaLoginDto user)
@@ -52,7 +52,7 @@ namespace SRVP.Controllers
                 }
                 return BadRequest(response);
             }
-            return StatusCode(StatusCodes.Status500InternalServerError, response);            
+            return StatusCode(StatusCodes.Status201Created, response);            
         }
 
         [AllowAnonymous]
