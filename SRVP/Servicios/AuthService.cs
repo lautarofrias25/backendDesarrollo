@@ -34,7 +34,7 @@ namespace SRVP.Servicios
                 response.Datos = null;
                 response.Exito = false;
                 string passw = user.clave;
-                var userBD = await _context.Personas.FirstOrDefaultAsync(x => x.usuario == user.nombre);
+                var userBD = await _context.Personas.FirstOrDefaultAsync(x => x.usuario == user.usuario);
                 if (userBD != null)
                 {
                     byte[] saltBytes = Convert.FromBase64String(userBD.sal); //convierto de base64 a bytes

@@ -52,7 +52,7 @@ namespace SRVP.Controllers
                 }
                 return BadRequest(response);
             }
-            return StatusCode(StatusCodes.Status500InternalServerError, response);            
+            return StatusCode(StatusCodes.Status201Created, response);            
         }
 
         [AllowAnonymous]
