@@ -21,7 +21,7 @@ namespace SRVP.Controllers
         {
             _authService = authService;
         }
-        // POST api/<AuthController>
+        // POST api/<AuthController> redireccionado
         [AllowAnonymous]
         [HttpPost("loguearAccessCode")]
         public async Task<ActionResult<Response<string>>> loguearAccessCode([FromBody] PersonaLoginDto user)
