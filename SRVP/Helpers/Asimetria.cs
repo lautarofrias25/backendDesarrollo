@@ -17,7 +17,7 @@ namespace SRVP.Helpers
             var claveRSA = new RsaSecurityKey(proveedorRSA);
             return claveRSA;
         }
-        public static string GenerarTokenJWT(string claveEnXML, string nombre, string apellido, long cuil, string email, bool estadoCrediticio, string rol, string autor, string audiencia, DateTime vencimiento)
+        public static string GenerarTokenJWT(string claveEnXML, bool vivo, string nombre, string apellido, long cuil, string email, bool estadoCrediticio, string rol, string autor, string audiencia, DateTime vencimiento)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
             var Identity = new ClaimsIdentity(new[]
@@ -27,6 +27,7 @@ namespace SRVP.Helpers
                 new Claim("Apellido", apellido),
                 new Claim(ClaimTypes.Email, email),
                 new Claim("Cuil", cuil.ToString()),
+                new Claim("Estado", vivo.ToString()),
                 new Claim("EstadoCrediticio", estadoCrediticio.ToString())
                 // Claims adicionales...
             });

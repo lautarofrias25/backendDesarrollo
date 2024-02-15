@@ -139,7 +139,7 @@ namespace SRVP.Servicios
                         XmlDocument doc = new XmlDocument();
                         doc.Load("ClavePrivada.xml");
                         string contenidoXML = doc.InnerXml;
-                        var token = Asimetria.GenerarTokenJWT(contenidoXML, personaBD.nombre, personaBD.apellido, personaBD.cuil, personaBD.email, personaBD.estadoCrediticio, personaBD.rol, "SRVP", sistemaBD.nombre, DateTime.Now.AddDays(1));
+                        var token = Asimetria.GenerarTokenJWT(contenidoXML, personaBD.vivo, personaBD.nombre, personaBD.apellido, personaBD.cuil, personaBD.email, personaBD.estadoCrediticio, personaBD.rol, "SRVP", sistemaBD.nombre, DateTime.Now.AddDays(1));
                         response.Exito = true;
                         response.Datos = token;
                         response.Mensaje = "El token fue generado correctamente";
