@@ -22,10 +22,10 @@ namespace SRVP.Helpers
             var tokenHandler = new JwtSecurityTokenHandler();
             var Identity = new ClaimsIdentity(new[]
             {
-                new Claim(ClaimTypes.Name, nombre),
-                new Claim(ClaimTypes.Role, rol),
+                new Claim("Nombre", nombre),
+                new Claim("Rol", rol),
                 new Claim("Apellido", apellido),
-                new Claim(ClaimTypes.Email, email),
+                new Claim("Email", email),
                 new Claim("Cuil", cuil.ToString()),
                 new Claim("Estado", vivo.ToString()),
                 new Claim("EstadoCrediticio", estadoCrediticio.ToString())
