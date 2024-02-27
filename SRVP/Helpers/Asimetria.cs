@@ -39,7 +39,7 @@ namespace SRVP.Helpers
             claims: Identity.Claims,
             notBefore: DateTime.UtcNow,
             expires: vencimiento,
-                signingCredentials: new SigningCredentials(key, SecurityAlgorithms.RsaSha256Signature, SecurityAlgorithms.Sha256Digest)
+                signingCredentials: new SigningCredentials(key, SecurityAlgorithms.RsaSha256, SecurityAlgorithms.Sha256Digest)
             );
             var TokenString = tokenHandler.WriteToken(Token);
             return TokenString;
