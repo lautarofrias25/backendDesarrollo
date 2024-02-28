@@ -12,6 +12,6 @@ namespace SRVP.Interfaces
         Task<Response<Persona>> registrarPersona(RegisterPersonaDTO persona);
         Task<Response<string>> loguearJWT(LoginJWTDto request);
         Task<Response<RespuestaLogin>> loguearInterno(LoginInternoDto user);
-
+        Task<Response<string>> ObtenerJWTBroker(CuilBrokerDTO request);
     }
 }

@@ -88,5 +88,21 @@ namespace SRVP.Controllers
         }
 
         //To do Post para login interno done
+
+        [AllowAnonymous]
+        [HttpPost("obtenerJWTBroker")]
+        public async Task<ActionResult<Response<string>>> obtenerJWTBroker([FromBody] CuilBrokerDTO request)
+        {
+            var response = await _authService.ObtenerJWTBroker(request);
+            if (response.Datos == null)
+            {
+                if (response.Mensaje.StartsWith("Error interno"))
+                {
+                    return StatusCode(StatusCodes.Status500InternalServerError, response);
+                }
+                return BadRequest(response);
+            }
+            return Ok(response);
+        }
     }
 }

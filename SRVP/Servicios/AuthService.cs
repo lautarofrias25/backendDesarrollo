@@ -200,5 +200,43 @@ namespace SRVP.Servicios
             respuesta.Mensaje = "El usuario no existe";
             return (respuesta);
         }
+
+        public async Task<Response<string>> ObtenerJWTBroker(CuilBrokerDTO request)
+        {
+            var response = new Response<string>();
+            response.Exito = false;
+            response.Datos = null;
+            try
+            {
+                if (await _context.SistemasExternos.AnyAsync(x => x.id.ToString() == request.clientId && x.secreto == request.clientSecret))
+                {
+                    var personaBD = await _context.Personas.FirstOrDefaultAsync(x => x.cuil == request.cuilPersona);
+                    if (personaBD != null)
+                    {
+                        Guid stringParseado = Guid.Parse(request.clientId);
+                        var sistemaBD = await _context.SistemasExternos.FindAsync(stringParseado);
+                        XmlDocument doc = new XmlDocument();
+                        doc.Load("ClavePrivada.xml");
+                        string contenidoXML = doc.InnerXml;
+                        var token = Asimetria.GenerarTokenJWT(contenidoXML, personaBD.vivo, personaBD.nombre, personaBD.apellido, personaBD.cuil, personaBD.email, personaBD.estadoCrediticio, personaBD.rol, "SRVP", sistemaBD.nombre, DateTime.Now.AddDays(1));
+                        response.Exito = true;
+                        response.Datos = token;
+                        response.Mensaje = "El token fue generado correctamente";
+                        await _context.SaveChangesAsync();
+                        return (response);
+                    }
+                    response.Mensaje = "La persona no fue encontrada";
+                    return (response);
+                }
+                response.Mensaje = "El id o el secreto del cliente son incorrectos";
+                return (response);
+            }
+            catch (Exception e)
+            {
+                response.Mensaje = "Error interno: " + e.Message;
+                return (response);
+            }
+        }
+            
     }
 }
