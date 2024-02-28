@@ -9,6 +9,7 @@ using SRVP.Interfaces;
 using Mapster;
 using System;
 using SRVP.DTOs.Persona;
+using SRVP.DTOs;
 
 namespace SRVP.Servicios
 {
@@ -104,20 +105,22 @@ namespace SRVP.Servicios
             }
         }
 
-        public async Task<Response<bool?>> GetEstadoCrediticio(int cuil) //el bool en response esta bien?
+        public async Task<Response<GetBrokerDto>> GetForBroker(long cuil) //el bool en response esta bien?
         {
-            var response = new Response<bool?>();
+            var response = new Response<GetBrokerDto>();
             response.Datos = null; //no se si esta bien     no esta bien porque si no se encuentra la persona igual devolves false                                                          
             response.Exito = false;
+            var br = new GetBrokerDto();
             try
             {
                 var persona = await _context.Personas.FirstOrDefaultAsync(x => x.cuil == cuil);
                 if (persona != null && persona.rol != "Administrador")
                 {
-                    
-                    response.Datos = persona.estadoCrediticio;
+                    br.estado = persona.vivo;
+                    br.estadoCrediticio = persona.estadoCrediticio;
+                    response.Datos = br;
                     response.Exito = true;
-                    response.Mensaje = "Se recupero correctamente el estado crediticio";
+                    response.Mensaje = "Se recupero correctamente el estado crediticio y el estado de la persona";
                     return (response);
                 };
                 response.Mensaje = "No se hallo la persona";

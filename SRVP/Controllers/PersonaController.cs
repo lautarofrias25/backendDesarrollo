@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using SRVP.Data.DTOs;
 using SRVP.Data.DTOs.Persona;
 using SRVP.Data.Models;
+using SRVP.DTOs;
 using SRVP.DTOs.Persona;
 using SRVP.Interfaces;
 using SRVP.Servicios;
@@ -109,10 +110,11 @@ namespace SRVP.Controllers
         //ok, revisar si esta bien. 
         
         //GET PersonaController/GetEstadoCrediticio/5
-        [HttpGet("getEstadoCrediticio{cuit}")]
-        public async Task<ActionResult<Response<bool?>>> GetEstadoCrediticio(int cuil)
+        [HttpGet("getParaBroker{cuil}")]
+        [AllowAnonymous]
+        public async Task<ActionResult<Response<GetBrokerDto>>> getParaBroker(long cuil)
         {
-            var response = await _service.GetEstadoCrediticio(cuil);
+            var response = await _service.GetForBroker(cuil);
             if (response.Datos == null) //no se si esta bien
             {
                 if (response.Mensaje.StartsWith("Error interno"))
